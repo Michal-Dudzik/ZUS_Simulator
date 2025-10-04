@@ -180,6 +180,33 @@
       "title": "Ciekawostki o systemie emerytalnym"
     }
   },
+  "simulator": {
+    "title": "Symulator ZUS",
+    "description": "Sprawdź, jaką emeryturę możesz otrzymać w przyszłości",
+    "pensionIntro": {
+      "question": "Jaką chciałbyś/chciałabyś mieć emeryturę w przyszłości?",
+      "currentAverage": "Obecna średnia emerytura w Polsce",
+      "pensionGroups": {
+        "belowMinimum": {
+          "title": "Poniżej minimum",
+          "description": "Pracowałeś/aś poniżej 25/20 lat, brak prawa do gwarantowanego minimum",
+          "range": "0 - 1 200 zł"
+        },
+        "aroundAverage": {
+          "title": "Wokół średniej",
+          "description": "Standardowa emerytura dla większości Polaków",
+          "range": "1 200 - 3 000 zł"
+        },
+        "aboveAverage": {
+          "title": "Powyżej średniej",
+          "description": "Wyższa emerytura dzięki dodatkowym składkom i oszczędnościom",
+          "range": "3 000+ zł"
+        }
+      },
+      "startSimulation": "Rozpocznij symulację",
+      "learnMore": "Dowiedz się więcej o emeryturach"
+    }
+  },
   "navigation": {
     "home": "Strona główna",
     "about": "O nas",

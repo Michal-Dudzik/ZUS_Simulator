@@ -185,6 +185,33 @@
       "title": "Retirement System Curiosities"
     }
   },
+  "simulator": {
+    "title": "ZUS Simulator",
+    "description": "Check what pension you can receive in the future",
+    "pensionIntro": {
+      "question": "What kind of pension would you like to have in the future?",
+      "currentAverage": "Current average pension in Poland",
+      "pensionGroups": {
+        "belowMinimum": {
+          "title": "Below minimum",
+          "description": "Worked less than 25/20 years, no right to guaranteed minimum",
+          "range": "0 - 1,200 PLN"
+        },
+        "aroundAverage": {
+          "title": "Around average",
+          "description": "Standard pension for most Poles",
+          "range": "1,200 - 3,000 PLN"
+        },
+        "aboveAverage": {
+          "title": "Above average",
+          "description": "Higher pension thanks to additional contributions and savings",
+          "range": "3,000+ PLN"
+        }
+      },
+      "startSimulation": "Start simulation",
+      "learnMore": "Learn more about pensions"
+    }
+  },
   "navigation": {
     "home": "Home",
     "about": "About",

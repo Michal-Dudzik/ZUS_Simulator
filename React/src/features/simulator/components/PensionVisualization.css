@@ -1,0 +1,254 @@
+.pension-visualization {
+  padding: 1.5rem;
+  background: var(--ant-color-bg-container, #ffffff);
+  border-radius: 8px;
+}
+
+.pension-stats {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-radius: 12px;
+  border: 1px solid #bae6fd;
+}
+
+.current-average h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ant-color-text, #000000);
+}
+
+.average-amount {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--ant-color-primary, #00993F);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pension-groups {
+  margin-bottom: 2rem;
+}
+
+.pension-groups h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  color: var(--ant-color-text, #000000);
+  text-align: center;
+}
+
+.groups-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.group-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.group-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.group-card.hovered {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.group-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.group-color-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.group-header h5 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ant-color-text, #000000);
+}
+
+.group-range {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ant-color-primary, #00993F);
+  margin-bottom: 0.5rem;
+}
+
+.group-percentage {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ant-color-text, #000000);
+  margin-bottom: 0.75rem;
+}
+
+.group-bar {
+  width: 100%;
+  height: 8px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.group-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.group-tooltip {
+  max-width: 250px;
+}
+
+.tooltip-title {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.tooltip-range {
+  font-size: 0.9rem;
+  color: #e6f7ff;
+  margin-bottom: 0.5rem;
+}
+
+.tooltip-description {
+  font-size: 0.85rem;
+  color: #bae6fd;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.tooltip-percentage {
+  font-size: 0.8rem;
+  color: #91d5ff;
+  font-weight: 500;
+}
+
+.pension-insights {
+  margin-top: 2rem;
+}
+
+.insight-card {
+  background: var(--ant-color-bg-elevated, #f8f9fa);
+  border: 1px solid var(--ant-color-border, #d7dbe7);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.insight-card h5 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ant-color-text, #000000);
+}
+
+.insight-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.insight-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: var(--ant-color-bg-container, #ffffff);
+  border-radius: 6px;
+  border: 1px solid var(--ant-color-border, #e8e8e8);
+}
+
+.insight-label {
+  font-size: 0.9rem;
+  color: var(--ant-color-text-secondary, #666666);
+  font-weight: 500;
+}
+
+.insight-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ant-color-text, #000000);
+}
+
+/* Dark theme support */
+.pension-visualization.theme-dark .pension-stats {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  border-color: #374151;
+}
+
+.pension-visualization.theme-dark .insight-card {
+  background: var(--ant-color-bg-elevated, #2d2d2d);
+  border-color: var(--ant-color-border, #404040);
+}
+
+.pension-visualization.theme-dark .insight-item {
+  background: var(--ant-color-bg-container, #1f1f1f);
+  border-color: var(--ant-color-border, #404040);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .pension-visualization {
+    padding: 1rem;
+  }
+
+  .pension-stats {
+    padding: 1rem;
+  }
+
+  .average-amount {
+    font-size: 2rem;
+  }
+
+  .groups-container {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .insight-stats {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .insight-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .group-card {
+    padding: 1rem;
+  }
+
+  .group-header h5 {
+    font-size: 1rem;
+  }
+
+  .group-range {
+    font-size: 0.9rem;
+  }
+
+  .group-percentage {
+    font-size: 1.25rem;
+  }
+}

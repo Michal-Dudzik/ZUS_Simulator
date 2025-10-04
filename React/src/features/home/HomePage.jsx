@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTheme } from '../../common/hooks/useTheme';
-import MainSimulator from '../simulator/components/MainSimulator';
+import SimulatorDashboard from '../simulator/components/SimulatorDashboard';
 import SectionHeader from './components/SectionHeader';
 import CuriositiesCard from '../curiosityCard/components/CuriositiesCard';
 import DataTable from '../dataTable/DataTable';
@@ -25,7 +25,7 @@ const HomePage = () => {
           hyperlinkUrl="https://www.zus.pl/documents/10182/167761/Publikacja_Fundusz_Emerytalny_2023-2080.pdf/3c2c41c9-6a50-0574-4634-ee9cfa43f286?t=1674049287158 "
         />
         
-        <MainSimulator />
+        <SimulatorDashboard />
         
         <CuriositiesCard />
 
