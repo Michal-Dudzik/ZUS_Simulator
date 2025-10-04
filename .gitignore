@@ -100,3 +100,4 @@ _[Ss]cripts
 *.ncrunchsolution
 *.dot[Cc]over
 /API/ZusSimulator/.vs/ZusSimulator.slnx
+/.vs
