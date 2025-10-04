@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using ZusSimulator.Services.Models;
+using ZusSimulator.Services.Services.RequstCollector;
 
 namespace ZusSimulator.Controllers
 {
@@ -7,9 +10,32 @@ namespace ZusSimulator.Controllers
     [ApiController]
     public class ZusController : ControllerBase
     {
-        public IActionResult GetRetirment()
+        private readonly IRequstCollectorService requstCollectorService;
+
+        public ZusController(IRequstCollectorService requstCollectorService)
         {
-            return Ok("Hello from ZusSimulator!");
+            this.requstCollectorService = requstCollectorService;
+        }
+
+        [HttpPost("simple-form")]
+        public async Task<IActionResult> PostSimpleResult(SimpleFormResultRequest request)
+        {
+            var dbId = await requstCollectorService.SaveSimpleFormResultAsync(request);
+            return Ok(dbId);
+        }
+
+        [HttpPost("advanced-form")]
+        public async Task<IActionResult> PostAdvancedResult(AdvancedFormResultRequest request)
+        {
+            var dbId = await requstCollectorService.SaveAdvancedFormResultAsync(request);
+            return Ok(dbId);
+        }
+
+        [HttpPost("personal-data")]
+        public async Task<IActionResult> PostPersonalData(PersonalDataRequest request)
+        {
+            var result = await requstCollectorService.UpdateWithPersonalData(request);
+            return (result ? Ok() : NotFound());
         }
     }
 }

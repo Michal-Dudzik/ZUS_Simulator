@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ZusSimulator.Data.BaseContext;
@@ -11,9 +12,11 @@ using ZusSimulator.Data.BaseContext;
 namespace ZusSimulator.Data.Migrations
 {
     [DbContext(typeof(ZusContext))]
-    partial class ZusContextModelSnapshot : ModelSnapshot
+    [Migration("20251004184910_addFormResultsAdvanced")]
+    partial class addFormResultsAdvanced
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,43 +33,36 @@ namespace ZusSimulator.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<decimal?>("AccountBalance")
+                    b.Property<decimal>("AccountBalance")
                         .HasColumnType("numeric");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int?>("CurrentAge")
+                    b.Property<int>("CurrentAge")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("text");
-
                     b.Property<string>("EmploymentType")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Gender")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<decimal?>("InitialCapital")
+                    b.Property<decimal>("InitialCapital")
                         .HasColumnType("numeric");
 
-                    b.Property<decimal?>("MonthlyIncome")
+                    b.Property<decimal>("MonthlyIncome")
                         .HasColumnType("numeric");
 
-                    b.Property<string>("PostalCode")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("RetirementAge")
+                    b.Property<int>("RetirementAge")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("SickLeaveDays")
+                    b.Property<int>("SickLeaveDays")
                         .HasColumnType("integer");
 
-                    b.Property<decimal?>("SubAccountBalance")
+                    b.Property<decimal>("SubAccountBalance")
                         .HasColumnType("numeric");
 
-                    b.Property<DateTime?>("WorkStartDate")
+                    b.Property<DateTime>("WorkStartDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
@@ -82,34 +78,27 @@ namespace ZusSimulator.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int?>("CurrentAge")
+                    b.Property<int>("CurrentAge")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("text");
-
                     b.Property<string>("EmploymentType")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Gender")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<decimal?>("InitialCapital")
+                    b.Property<decimal>("InitialCapital")
                         .HasColumnType("numeric");
 
-                    b.Property<decimal?>("MonthlyIncome")
+                    b.Property<decimal>("MonthlyIncome")
                         .HasColumnType("numeric");
 
-                    b.Property<string>("PostalCode")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("RetirementAge")
+                    b.Property<int>("RetirementAge")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime?>("WorkStartDate")
+                    b.Property<DateTime>("WorkStartDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");

@@ -10,6 +10,7 @@ namespace ZusSimulator.Data.BaseContext
 {
     public class ZusContext(DbContextOptions<ZusContext> options) : DbContext(options)
     {
-        DbSet<AiResults> AiResults { get; set; }
+        public DbSet<SimpleFormResult> SimpleFormResults { get; set; }
+        public DbSet<AdvancedFormResult> AdvancedFormResults { get; set; }
     }
 }

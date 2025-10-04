@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ZusSimulator.Data\ZusSimulator.Data.csproj" />
+  </ItemGroup>
+
 </Project>

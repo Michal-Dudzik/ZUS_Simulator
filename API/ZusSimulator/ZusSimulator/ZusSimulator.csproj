@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ZusSimulator.Data\ZusSimulator.Data.csproj" />
+    <ProjectReference Include="..\ZusSimulator.Services\ZusSimulator.Services.csproj" />
   </ItemGroup>
 
 </Project>

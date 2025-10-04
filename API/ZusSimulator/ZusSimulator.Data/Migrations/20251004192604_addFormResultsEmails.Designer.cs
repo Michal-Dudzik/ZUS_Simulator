@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ZusSimulator.Data.BaseContext;
@@ -11,9 +12,11 @@ using ZusSimulator.Data.BaseContext;
 namespace ZusSimulator.Data.Migrations
 {
     [DbContext(typeof(ZusContext))]
-    partial class ZusContextModelSnapshot : ModelSnapshot
+    [Migration("20251004192604_addFormResultsEmails")]
+    partial class addFormResultsEmails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
