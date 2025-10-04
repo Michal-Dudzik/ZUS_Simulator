@@ -1,0 +1,146 @@
+/* Scenario Controls */
+.scenario-controls-card {
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  background: #ffffff !important;
+}
+
+.scenario-controls-card .ant-card-body {
+  background: #ffffff !important;
+}
+
+.scenario-controls-card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #000000;
+}
+
+.controls-description {
+  color: #666666;
+  margin-bottom: 1rem;
+}
+
+.control-item {
+  background: #f5f6fb !important;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #d7dbe7;
+}
+
+.control-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.control-header label {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #000000;
+}
+
+.control-value {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #11783b;
+}
+
+.impact-indicator {
+  margin-top: 0.75rem;
+  min-height: 1.5rem;
+}
+
+.positive-impact {
+  color: #52c41a;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.positive-impact::before {
+  content: '↗';
+  font-size: 1.2rem;
+}
+
+.scenario-summary {
+  margin-top: 1.5rem;
+  background: linear-gradient(135deg, rgba(17, 120, 59, 0.05) 0%, rgba(17, 120, 59, 0.1) 100%) !important;
+  border: 2px solid #11783b;
+  border-radius: 8px;
+}
+
+.scenario-summary .ant-card-body {
+  background: transparent !important;
+}
+
+.summary-item {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.summary-label {
+  font-size: 0.875rem;
+  color: #666666;
+  margin-bottom: 0.25rem;
+}
+
+.summary-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000000;
+}
+
+.summary-value.highlight {
+  color: #11783b;
+  font-size: 1.75rem;
+}
+
+/* Slider customization */
+.ant-slider-track {
+  background-color: var(--ant-color-primary, #1890ff);
+}
+
+.ant-slider-handle::after {
+  box-shadow: 0 0 0 2px var(--ant-color-primary, #1890ff);
+}
+
+.ant-slider-handle:hover::after,
+.ant-slider-handle:focus::after {
+  box-shadow: 0 0 0 4px rgba(24, 144, 255, 0.2);
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  .scenario-controls-card {
+    background: var(--ant-color-bg-elevated, #2d2d2d);
+  }
+
+  .scenario-controls-card .ant-card-body {
+    background: var(--ant-color-bg-elevated, #2d2d2d);
+  }
+
+  .control-item {
+    background: var(--ant-color-bg-container, #1a1a1a);
+    border-color: var(--ant-color-border, #404040);
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .control-item {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .scenario-controls-card h3 {
+    font-size: 1.25rem;
+  }
+}

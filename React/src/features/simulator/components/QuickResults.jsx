@@ -3,6 +3,7 @@ import { Button, Divider, Alert } from 'antd';
 import { EditOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import { pensionData } from '../data/pensionData';
 import { useLanguage } from '../../../i18n/useLanguage';
+import PensionVisualization from '../../pensionVisualization/components/PensionVisualization';
 
 const QuickResults = ({ results, onEdit, onContinueToDetailed, resultsRef }) => {
   const { t } = useLanguage();
@@ -104,10 +105,14 @@ const QuickResults = ({ results, onEdit, onContinueToDetailed, resultsRef }) => 
         {/* Continue to Detailed Simulation */}
         <Alert
           message="Chcesz dokładniejszej symulacji?"
-          description="Kontynuuj z formularzem szczegółowym, aby uzyskać bardziej precyzyjne wyniki z dodatkowymi opcjami takimi jak waloryzacja, kapitał początkowy i dodatkowe świadczenia."
+          description="Kontynuuj z formularzem szczegółowym, aby uzyskać bardziej precyzyjne wyniki."
           type="info"
           showIcon
-          style={{ marginTop: '2rem' }}
+          style={{ 
+            marginTop: '2rem',
+            backgroundColor: '#e6f7ff',
+            border: '1px solidrgb(145, 255, 158)'
+          }}
           action={
             <Button 
               type="primary" 
@@ -120,6 +125,10 @@ const QuickResults = ({ results, onEdit, onContinueToDetailed, resultsRef }) => 
           }
         />
       </div>
+
+      {/* Enhanced Pension Visualization */}
+      <Divider />
+      <PensionVisualization results={results} />
     </div>
   );
 };

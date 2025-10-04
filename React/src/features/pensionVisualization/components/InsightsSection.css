@@ -1,0 +1,109 @@
+/* Insights */
+.insights-card {
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  background: #ffffff !important;
+}
+
+.insights-card .ant-card-body {
+  background: #ffffff !important;
+}
+
+.insights-card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #000000;
+}
+
+.insight-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: #ffffff !important;
+  border: 1px solid #d7dbe7;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.insight-item:hover {
+  background: #f5f6fb !important;
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.insight-icon {
+  font-size: 2rem;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.insight-icon.positive {
+  background: rgba(17, 120, 59, 0.1);
+  border: 2px solid var(--ant-color-primary, #11783b);
+}
+
+.insight-icon.info {
+  background: rgba(63, 132, 210, 0.1);
+  border: 2px solid #3F84D2;
+}
+
+.insight-icon.warning {
+  background: rgba(255, 179, 79, 0.1);
+  border: 2px solid #FFB34F;
+}
+
+.insight-icon.tip {
+  background: rgba(240, 94, 94, 0.1);
+  border: 2px solid #F05E5E;
+}
+
+.insight-content h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: #000000;
+}
+
+.insight-content p {
+  font-size: 0.875rem;
+  color: #666666;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  .insights-card {
+    background: var(--ant-color-bg-elevated, #2d2d2d);
+  }
+
+  .insights-card .ant-card-body {
+    background: var(--ant-color-bg-elevated, #2d2d2d);
+  }
+
+  .insight-item {
+    background: var(--ant-color-bg-container, #1a1a1a);
+    border-color: var(--ant-color-border, #404040);
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .insight-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .insight-icon {
+    margin: 0 auto;
+  }
+}

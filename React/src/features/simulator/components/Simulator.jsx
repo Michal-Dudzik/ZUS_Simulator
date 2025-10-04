@@ -59,7 +59,7 @@ const Simulator = () => {
 
       // Send request to API (background operation)
       try {
-        const response = await fetch('https://localhost:50032/api/Zus/simple-form', {
+        const response = await fetch('http://localhost:50031/api/Zus/simple-form', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
