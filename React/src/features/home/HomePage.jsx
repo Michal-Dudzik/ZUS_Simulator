@@ -9,7 +9,12 @@ const HomePage = () => {
   return (
     <div className={`home-page-container ${isDark ? 'theme-dark' : 'theme-light'}`}>
       <div className="home-page-content">
+        {/* TODO: section with welcome message*/}
         <MainSimulator />
+      {/* TODO: visible adter calculation is done stats, in separate widgets*/}
+      {/* TODO: table with calculations*/}
+      {/* TODO: section with ciekawostki*/}
+      {/* TODO: section with usefull articles*/}
       </div>
     </div>
   );
