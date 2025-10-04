@@ -1,0 +1,225 @@
+.admin-sider {
+    padding: 16px;
+}
+
+.admin-side-menu {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-side-menu .ant-menu-light {
+    border-inline-end: none !important;
+}
+
+.admin-side-menu .ant-menu-item {
+    margin-bottom: 16px !important;
+}
+
+.logout-section {
+    margin-top: auto;
+    padding-top: 16px;
+}
+
+.logout-button {
+    width: 100%;
+}
+
+.admin-content-wrapper {
+    padding: 1rem;
+    overflow: auto;
+    height: 100%;
+}
+
+/* Loading State */
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 135px);
+}
+
+/* Login Form */
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 135px); /* Adjust based on header/footer height */
+}
+
+.login-card {
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-error-alert {
+    margin-bottom: 24px;
+}
+
+.login-button {
+    width: 100%;
+}
+
+/* QR Code Page */
+
+.qr-header {
+    margin-bottom: 32px;
+}
+
+.qr-title {
+    margin-bottom: 8px !important;
+}
+
+.qr-controls-card {
+    margin-bottom: 24px;
+}
+
+.car-selection-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.car-select {
+    width: 100%;
+    max-width: 400px;
+}
+
+.qr-preview-card {
+    margin-top: 24px;
+}
+
+.qr-preview-header {
+    margin-bottom: 16px;
+}
+
+.qr-info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    height: 100%;
+}
+
+.qr-url-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.qr-url-text {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 14px;
+    word-break: break-all;
+}
+
+.qr-actions-section {
+    margin-top: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+
+    .admin-sider {
+        position: fixed !important;
+        top: var(--header-height);
+        left: 0;
+        height: calc(var(--actual-viewport-height, 100vh) - var(--header-height) - var(--footer-height));
+        z-index: 999;
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+        transform: translateX(0);
+        transition: transform 0.3s ease;
+    }
+
+    .admin-sider.ant-layout-sider-collapsed {
+        transform: translateX(-100%);
+    }
+
+    .admin-content-wrapper {
+        padding: 12px;
+        width: 100%;
+    }
+
+    .qr-code-container {
+        padding: 16px;
+    }
+    
+    .qr-info-section {
+        gap: 16px;
+    }
+    
+    .qr-url-container {
+        padding: 8px;
+    }
+    
+    .qr-url-text {
+        font-size: 12px;
+    }
+    
+    .qr-actions-section .ant-btn {
+        width: 100%;
+    }
+
+    .qr-controls-card {
+        margin-bottom: 16px;
+    }
+    
+    .qr-preview-card {
+        margin-top: 16px;
+    }
+
+}
+
+.admin-menu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.admin-menu.ant-menu-inline,
+.logout-menu.ant-menu-inline,
+.admin-menu.ant-menu-vertical,
+.logout-menu.ant-menu-vertical {
+    border-inline-end: none !important;
+}
+
+.admin-menu .ant-menu-item,
+.logout-menu .ant-menu-item {
+    margin-bottom: 1rem;
+}
+
+.ant-layout-sider-trigger {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    cursor: pointer;
+    background-color: #f0f2f5;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 1;
+}
+
+.ant-layout-sider-has-trigger .ant-layout-sider-children {
+    padding-bottom: 48px;
+}
+
+/* Custom Scrollbar Styles for PageLayout */
+.page-content-card .ant-card-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.page-content-card .ant-card-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.page-content-card .ant-card-body::-webkit-scrollbar-thumb {
+    background: #d4d4d4;
+    border-radius: 4px;
+    border: 1px solid #f1f1f1;
+}
+
+.page-content-card .ant-card-body::-webkit-scrollbar-thumb:hover {
+    background: #b8b8b8;
+}

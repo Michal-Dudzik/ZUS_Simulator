@@ -1,0 +1,186 @@
+{
+  "item": {
+    "title": "Szczegóły elementu",
+    "name": "Nazwa",
+    "category": "Kategoria",
+    "date": "Data",
+    "author": "Autor",
+    "description": "Opis",
+    "noImages": "Brak dostępnych zdjęć"
+  },
+  "list": {
+    "title": "Przeglądaj elementy",
+    "noItems": "Brak dostępnych elementów w tej chwili.",
+    "author": "Autor"
+  },
+  "form": {
+    "title": "Wyślij formularz",
+    "email": "Adres email",
+    "emailPlaceholder": "wpisz swój email",
+    "submit": "Wyślij",
+    "alreadySubmitted": "Już wysłałeś formularz",
+    "alreadySubmittedMessage": "Możesz wysłać formularz tylko raz. Dziękujemy za udział!",
+    "success": "Dziękujemy!",
+    "successMessage": "Twoje zgłoszenie dla {{item}} zostało pomyślnie zarejestrowane!",
+    "confirmationMessage": "Twoje zgłoszenie zostało zapisane i przetworzone.",
+    "error": "Coś poszło nie tak. Spróbuj ponownie.",
+    "submitError": "Błąd wysyłania formularza",
+    "genericError": "Wystąpił nieoczekiwany błąd. Spróbuj ponownie później.",
+    "tryAgain": "Spróbuj ponownie",
+    "emailRequired": "Email jest wymagany",
+    "emailInvalid": "Podaj prawidłowy adres email",
+    "invalidItemId": "Nieprawidłowy ID elementu",
+    "alreadySubmittedForItem": "Już wysłałeś formularz dla tego elementu",
+    "submitFailed": "Nie udało się wysłać formularza",
+    "fetchFailed": "Nie udało się pobrać danych elementu",
+    "invalidItemData": "Otrzymano nieprawidłowe dane elementu z serwera"
+  },
+  "error": {
+    "title": "Ups!",
+    "description": "Coś poszło nie tak. Proszę spróbować później.",
+    "itemNotFound": "Element, którego szukasz, nie istnieje.",
+    "failedToSubmit": "Nie udało się wysłać formularza. Być może już go wysłałeś.",
+    "generic": "Wystąpił nieoczekiwany błąd."
+  },
+  "language": {
+    "english": "Angielski",
+    "polish": "Polski"
+  },
+  "common": {
+    "loading": "Ładowanie...",
+    "error": "Błąd",
+    "itemNotFound": "Nie znaleziono elementu",
+    "goBack": "Wróć",
+    "contactUs": "Skontaktuj się z nami",
+    "or": "lub"
+  },
+  "notFound": {
+    "title": "Nie znaleziono strony",
+    "description": "Nie mogliśmy znaleźć strony, której szukasz. Sprawdź URL lub wróć do strony głównej.",
+    "instruction": "Wróć do nawigacji",
+    "instructionDetails": "Użyj menu nawigacji lub przycisku poniżej, aby wrócić do głównych sekcji aplikacji."
+  },
+  "admin": {
+    "loginTitle": "Panel administratora",
+    "emailLabel": "Email",
+    "passwordLabel": "Hasło",
+    "emailRequired": "Proszę podać swój adres e-mail!",
+    "passwordRequired": "Proszę podać swoje hasło!",
+    "loginButton": "Zaloguj się",
+    "logoutButton": "Wyloguj",
+    "loading": "Ładowanie...",
+    "login": "Zaloguj się",
+    "logout": "Wyloguj się",
+    "menu": {
+      "reports": "Raporty",
+      "dashboard": "Panel główny",
+      "addItem": "Dodaj element"
+    },
+    "reports": {
+      "title": "Generator raportów",
+      "selectItem": "Wybierz element",
+      "selectItemLabel": "Wybierz element, aby wygenerować raport",
+      "downloadAllButton": "Pobierz wszystkie raporty",
+      "downloadAllLabel": "Pobieranie grupowe",
+      "reportPreview": "Podgląd raportu",
+      "reportUrl": "URL raportu",
+      "downloadReportButton": "Pobierz raport",
+      "loadingItems": "Ładowanie elementów...",
+      "retry": "Spróbuj ponownie",
+      "error": "Nie udało się wygenerować raportów. Spróbuj ponownie."
+    },
+    "dashboard": {
+      "title": "Panel administratora",
+      "welcome": "Witaj w panelu administratora. Użyj menu, aby nawigować.",
+      "statistics": {
+        "title": "Statystyki",
+        "selectCategory": "Wybierz kategorię",
+        "allCategories": "Wszystkie kategorie",
+        "totalSubmissions": "Wszystkie zgłoszenia",
+        "totalSubmissionsDescription": "Całkowita liczba otrzymanych zgłoszeń",
+        "topItems": "TOP 10 elementów",
+        "topItemsDescription": "Najpopularniejsze elementy",
+        "topItemsChart": "Rozkład najlepszych elementów",
+        "topItemsChartDescription": "TOP 5 elementów z udziałem w zgłoszeniach",
+        "others": "Inne",
+        "noSubmissions": "Brak zgłoszeń",
+        "noData": "Brak danych",
+        "loading": "Ładowanie statystyk...",
+        "error": "Nie udało się załadować statystyk",
+        "rank": "Pozycja",
+        "itemName": "Nazwa elementu",
+        "submissions": "Zgłoszenia",
+        "percentage": "Procent"
+      }
+    },
+    "addItem": {
+      "title": "Dodaj nowy element",
+      "basicInfo": "Informacje podstawowe",
+      "itemName": "Nazwa elementu",
+      "itemNamePlaceholder": "Wprowadź nazwę elementu (np. Przykładowy produkt)",
+      "itemNameRequired": "Nazwa elementu jest wymagana",
+      "description": "Opis",
+      "descriptionPlaceholder": "Wprowadź szczegółowy opis elementu",
+      "descriptionRequired": "Opis jest wymagany",
+      "author": "Autor",
+      "authorPlaceholder": "Wprowadź imię autora",
+      "website": "Strona internetowa",
+      "websitePlaceholder": "URL strony internetowej",
+      "websiteInvalid": "Nieprawidłowy format URL strony internetowej",
+      "specifications": "Specyfikacje",
+      "category": "Kategoria",
+      "categoryPlaceholder": "Wprowadź kategorię elementu",
+      "categoryInvalid": "Kategoria musi być wybrana",
+      "price": "Cena",
+      "pricePlaceholder": "Wprowadź cenę",
+      "priceInvalid": "Cena musi być liczbą dodatnią",
+      "quantity": "Ilość",
+      "quantityPlaceholder": "Wprowadź ilość",
+      "quantityInvalid": "Ilość musi być między 1 a 1000",
+      "status": "Status",
+      "statusPlaceholder": "Wybierz status",
+      "availability": "Dostępność",
+      "availabilityPlaceholder": "Wybierz dostępność",
+      "images": "Zdjęcia",
+      "uploadImages": "Prześlij zdjęcia",
+      "uploadImage": "Prześlij",
+      "invalidFileType": "Dozwolone są tylko pliki graficzne",
+      "fileTooLarge": "Rozmiar pliku musi być mniejszy niż 5MB",
+      "submit": "Dodaj element",
+      "reset": "Resetuj formularz",
+      "success": "Element dodany pomyślnie!",
+      "error": "Nie udało się dodać elementu. Spróbuj ponownie."
+    }
+  },
+  "contactForm": {
+    "emailLabel": "Adres e-mail",
+    "submitButton": "Wyślij",
+    "successMessage": "Twoja wiadomość została wysłana pomyślnie!",
+    "alreadySubmitted": "Już wysłałeś wiadomość.",
+    "invalidEmail": "Proszę podać poprawny adres e-mail.",
+    "submitFailed": "Nie udało się wysłać wiadomości. Proszę spróbować ponownie."
+  },
+  "general": {
+    "notFound": "Przepraszamy, strona, którą odwiedziłeś, nie istnieje.",
+    "backHome": "Powrót na stronę główną"
+  },
+  "home": {
+    "welcome": "Witaj w szablonie React",
+    "subtitle": "Nowoczesny szablon aplikacji React z routingiem, internacjonalizacją i panelem administratora",
+    "getStarted": "Rozpocznij",
+    "learnMore": "Dowiedz się więcej",
+    "features": {
+      "title": "Funkcje szablonu",
+      "routing": "React Router z lazy loading",
+      "i18n": "Wsparcie internacjonalizacji",
+      "admin": "Panel administratora z uwierzytelnianiem",
+      "responsive": "Responsywny design z Ant Design"
+    }
+  },
+  "navigation": {
+    "home": "Strona główna",
+    "about": "O nas",
+    "contact": "Kontakt",
+    "admin": "Administrator"
+  }
+}

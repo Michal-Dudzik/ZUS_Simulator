@@ -1,0 +1,191 @@
+{
+  "item": {
+    "title": "Item Details",
+    "name": "Name",
+    "category": "Category",
+    "date": "Date",
+    "author": "Author",
+    "description": "Description",
+    "noImages": "No images available"
+  },
+  "list": {
+    "title": "Browse Items",
+    "noItems": "No items available at the moment.",
+    "author": "Author"
+  },
+  "form": {
+    "title": "Submit Form",
+    "email": "Email address",
+    "emailPlaceholder": "enter your email",
+    "submit": "Submit",
+    "alreadySubmitted": "You have already submitted",
+    "alreadySubmittedMessage": "You can only submit once. Thank you for your participation!",
+    "success": "Thank you!",
+    "successMessage": "Your submission for {{item}} has been successfully registered!",
+    "confirmationMessage": "Your submission has been saved and processed.",
+    "error": "Something went wrong. Please try again.",
+    "submitError": "Submission Error",
+    "genericError": "An unexpected error occurred. Please try again later.",
+    "tryAgain": "Try Again",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Please enter a valid email address",
+    "invalidItemId": "Invalid item ID",
+    "alreadySubmittedForItem": "You have already submitted for this item",
+    "submitFailed": "Failed to submit form",
+    "fetchFailed": "Failed to fetch item data",
+    "invalidItemData": "Received invalid item data from the server"
+  },
+  "error": {
+    "title": "Oops!",
+    "description": "Something went wrong. Please try again later.",
+    "itemNotFound": "The item you are looking for does not exist.",
+    "failedToSubmit": "Failed to submit your form. You may have already submitted.",
+    "generic": "An unexpected error occurred."
+  },
+  "language": {
+    "english": "English",
+    "polish": "Polish"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "itemNotFound": "Item not found",
+    "goBack": "Go back",
+    "contactUs": "Contact us",
+    "or": "or"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "We couldn't find the page you're looking for. Please check the URL or navigate back to the home page.",
+    "instruction": "Navigate Back",
+    "instructionDetails": "Use the navigation menu or the button below to return to the main sections of the application."
+  },
+  "admin": {
+    "loginTitle": "Admin Panel",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "emailRequired": "Please enter your email!",
+    "passwordRequired": "Please enter your password!",
+    "loginButton": "Login",
+    "logoutButton": "Logout",
+    "loading": "Loading...",
+    "login": {
+      "title": "Admin Login",
+      "emailLabel": "Email",
+      "passwordLabel": "Password",
+      "loginButton": "Login",
+      "error": "Login failed. Please check your credentials."
+    },
+    "menu": {
+      "reports": "Reports",
+      "dashboard": "Dashboard",
+      "addItem": "Add Item"
+    },
+    "reports": {
+      "title": "Reports Generator",
+      "selectItem": "Select an item",
+      "selectItemLabel": "Select an Item to Generate Report",
+      "downloadAllButton": "Download All Reports",
+      "downloadAllLabel": "Batch download",
+      "reportPreview": "Report Preview",
+      "reportUrl": "Report URL",
+      "downloadReportButton": "Download Report",
+      "loadingItems": "Loading items...",
+      "retry": "Retry",
+      "error": "Failed to generate reports. Please try again."
+    },
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "welcome": "Welcome to the admin panel. Please use the menu to navigate.",
+      "statistics": {
+        "title": "Statistics",
+        "selectCategory": "Select Category",
+        "allCategories": "All Categories",
+        "totalSubmissions": "Total Submissions",
+        "totalSubmissionsDescription": "Total number of submissions received",
+        "topItems": "Top 10 Items",
+        "topItemsDescription": "Most popular items",
+        "topItemsChart": "Top Items Distribution",
+        "topItemsChartDescription": "Top 5 items with submission share",
+        "others": "Others",
+        "noSubmissions": "No submissions yet",
+        "noData": "No data available",
+        "loading": "Loading statistics...",
+        "error": "Failed to load statistics",
+        "rank": "Rank",
+        "itemName": "Item Name",
+        "submissions": "Submissions",
+        "percentage": "Percentage"
+      }
+    },
+    "addItem": {
+      "title": "Add New Item",
+      "basicInfo": "Basic Information",
+      "itemName": "Item Name",
+      "itemNamePlaceholder": "Enter item name (e.g., Sample Product)",
+      "itemNameRequired": "Item name is required",
+      "description": "Description",
+      "descriptionPlaceholder": "Enter a detailed description of the item",
+      "descriptionRequired": "Description is required",
+      "author": "Author",
+      "authorPlaceholder": "Enter author's name",
+      "website": "Website",
+      "websitePlaceholder": "website URL",
+      "websiteInvalid": "Invalid website URL format",
+      "specifications": "Specifications",
+      "category": "Category",
+      "categoryPlaceholder": "Enter item category",
+      "categoryInvalid": "Category must be selected",
+      "price": "Price",
+      "pricePlaceholder": "Enter price",
+      "priceInvalid": "Price must be a positive number",
+      "quantity": "Quantity",
+      "quantityPlaceholder": "Enter quantity",
+      "quantityInvalid": "Quantity must be between 1 and 1000",
+      "status": "Status",
+      "statusPlaceholder": "Select status",
+      "availability": "Availability",
+      "availabilityPlaceholder": "Select availability",
+      "images": "Images",
+      "uploadImages": "Upload Images",
+      "uploadImage": "Upload",
+      "invalidFileType": "Only image files are allowed",
+      "fileTooLarge": "File size must be less than 5MB",
+      "submit": "Add Item",
+      "reset": "Reset Form",
+      "success": "Item added successfully!",
+      "error": "Failed to add item. Please try again."
+    }
+  },
+  "contactForm": {
+    "emailLabel": "Email address",
+    "submitButton": "Submit",
+    "successMessage": "Your message has been sent successfully!",
+    "alreadySubmitted": "You have already submitted a message.",
+    "invalidEmail": "Please enter a valid email address.",
+    "submitFailed": "Failed to submit your message. Please try again."
+  },
+  "general": {
+    "notFound": "Sorry, the page you visited does not exist.",
+    "backHome": "Back Home"
+  },
+  "home": {
+    "welcome": "Welcome to React Template",
+    "subtitle": "A modern React application template with routing, internationalization, and admin panel",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "features": {
+      "title": "Template Features",
+      "routing": "React Router with lazy loading",
+      "i18n": "Internationalization support",
+      "admin": "Admin panel with authentication",
+      "responsive": "Responsive design with Ant Design"
+    }
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "admin": "Admin"
+  }
+}
