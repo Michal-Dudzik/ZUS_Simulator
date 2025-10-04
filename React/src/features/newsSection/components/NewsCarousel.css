@@ -52,11 +52,11 @@
 }
 
 .carousel-nav-left {
-  left: -15px;
+  left: 10px;
 }
 
 .carousel-nav-right {
-  right: -15px;
+  right: 10px;
 }
 
 .carousel-dots {
@@ -99,11 +99,11 @@
   }
   
   .carousel-nav-left {
-    left: -10px;
+    left: 8px;
   }
   
   .carousel-nav-right {
-    right: -10px;
+    right: 8px;
   }
 }
 
@@ -119,11 +119,11 @@
   }
   
   .carousel-nav-left {
-    left: -5px;
+    left: 5px;
   }
   
   .carousel-nav-right {
-    right: -5px;
+    right: 5px;
   }
 }
 
@@ -145,11 +145,11 @@
   }
   
   .carousel-nav-left {
-    left: 0px;
+    left: 5px;
   }
   
   .carousel-nav-right {
-    right: 0px;
+    right: 5px;
   }
 }
 

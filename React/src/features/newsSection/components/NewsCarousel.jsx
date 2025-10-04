@@ -116,11 +116,7 @@ const NewsCarousel = ({ articles, title = "Aktualności" }) => {
         </Space>
       </div>
 
-      <div 
-        className="news-carousel-wrapper"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+      <div className="news-carousel-controls-wrapper">
         <Button
           type="text"
           icon={<LeftOutlined />}
@@ -139,25 +135,31 @@ const NewsCarousel = ({ articles, title = "Aktualności" }) => {
         />
 
         <div 
-          ref={carouselRef}
-          className="news-carousel-track"
-          style={{
-            transform: `translateX(-${currentIndex * (100 / cardsPerView)}%)`,
-            transition: 'transform 0.5s ease-in-out'
-          }}
+          className="news-carousel-wrapper"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
-          {articles.map((article, index) => (
-            <div 
-              key={article.id} 
-              className="news-carousel-slide"
-              style={{
-                width: `${100 / cardsPerView}%`,
-                padding: '0 8px'
-              }}
-            >
-              <NewsCard article={article} />
-            </div>
-          ))}
+          <div 
+            ref={carouselRef}
+            className="news-carousel-track"
+            style={{
+              transform: `translateX(-${currentIndex * (100 / cardsPerView)}%)`,
+              transition: 'transform 0.5s ease-in-out'
+            }}
+          >
+            {articles.map((article, index) => (
+              <div 
+                key={article.id} 
+                className="news-carousel-slide"
+                style={{
+                  width: `${100 / cardsPerView}%`,
+                  padding: '0 8px'
+                }}
+              >
+                <NewsCard article={article} />
+              </div>
+            ))}
+          </div>
         </div>
 
         <Button
