@@ -6,6 +6,8 @@ services:
       dockerfile: ZusSimulator/Dockerfile
     ports:
     - "5000:5000"
+    - "50031:8080"
+    - "50032:8081"
     networks:
       - zusnet
   postgres:

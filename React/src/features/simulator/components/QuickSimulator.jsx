@@ -74,6 +74,39 @@ const QuickSimulator = () => {
       const currentAge = parseInt(values.currentAge) || 25;
       const retirementAge = parseInt(values.retirementAge) || (gender === 'male' ? 65 : 60);
 
+      // Prepare data for API request - mapping to SimpleFormResultRequest model
+      const apiData = {
+        currentAge: parseInt(currentAge), // integer (int32)
+        monthlyIncome: parseFloat(zarobkiMiesieczne), // number (double)
+        employmentType: employmentType || null, // string (nullable)
+        gender: gender || null, // string (nullable)
+        workStartDate: values.workStartDate ? new Date(values.workStartDate).toISOString() : null, // string (date-time, nullable)
+        initialCapital: parseFloat(kapitalPoczatkowy), // number (double)
+        retirementAge: parseInt(retirementAge) // integer (int32)
+      };
+
+      // Send request to API (background operation)
+      try {
+        const response = await fetch('https://localhost:50032/api/Zus/simple-form', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(apiData)
+        });
+
+        if (!response.ok) {
+          throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+        }
+
+        const apiResult = await response.json();
+        console.log('API Response:', apiResult);
+        // You can use apiResult here if you want to display API data alongside local calculations
+      } catch (apiError) {
+        console.error('API request failed:', apiError);
+        // Continue with local calculation even if API fails
+      }
+
       // Calculate years of work until retirement based on actual age
       let lataPracy = 0;
       if (values.workStartDate) {

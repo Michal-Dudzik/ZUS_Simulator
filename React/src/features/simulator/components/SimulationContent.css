@@ -226,6 +226,29 @@
   border-width: 2px;
 }
 
+/* API Status Styles */
+.api-status {
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.api-status.success {
+  background: rgba(82, 196, 26, 0.1);
+  border: 1px solid rgba(82, 196, 26, 0.3);
+  color: #389e0d;
+}
+
+.api-status.error {
+  background: rgba(255, 77, 79, 0.1);
+  border: 1px solid rgba(255, 77, 79, 0.3);
+  color: #cf1322;
+}
+
 /* Quick Simulation Specific Styles */
 .quick-simulation .results-grid {
   grid-template-columns: 1fr 1fr;
