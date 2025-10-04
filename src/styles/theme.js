@@ -6,13 +6,17 @@ const THEME_DEFINITIONS = {
     label: 'Light',
     mode: 'light',
     colors: {
-      primary: '#f2ff00ff',
-      background: '#f5f6fb',
-      surface: '#ffffff',
-      surfaceElevated: '#f9faff',
-      text: '#1d2130',
-      textSecondary: '#4d5672',
-      border: '#d7dbe7',
+      primary: '#00993F',        // R: 0; G: 153; B: 63 - ZUS Green (always primary)
+      secondary: '#FFB34F',      // R: 255; G: 179; B: 79 - Orange
+      accent: '#3F84D2',         // R: 63; G: 132; B: 210 - Blue
+      background: '#f5f6fb',     // Very light background for subtle depth
+      surface: '#ffffff',        // White surface
+      surfaceElevated: '#ffffff', // White elevated
+      text: '#000000',           // R: 0; G: 0; B: 0 - Black text
+      textSecondary: '#4d5672',  // Gray secondary text
+      border: '#d7dbe7',         // Light gray borders
+      error: '#F05E5E',          // R: 240; G: 94; B: 94 - Red
+      black: '#000000',          // R: 0; G: 0; B: 0 - Black
     },
   },
   dark: {
@@ -20,13 +24,17 @@ const THEME_DEFINITIONS = {
     label: 'Dark',
     mode: 'dark',
     colors: {
-      primary: '#f2ff00ff',
-      background: '#050712',
-      surface: '#111735',
-      surfaceElevated: '#161d42',
-      text: '#f5f7ff',
-      textSecondary: '#c1c6d8',
-      border: '#252b4d',
+      primary: '#00993F',        // R: 0; G: 153; B: 63 - ZUS Green (always primary)
+      secondary: '#FFB34F',      // R: 255; G: 179; B: 79 - Orange
+      accent: '#3F84D2',         // R: 63; G: 132; B: 210 - Blue
+      background: '#1a1a1a',     // Dark grey background
+      surface: '#2d2d2d',        // Dark grey surface
+      surfaceElevated: '#3a3a3a', // Elevated dark grey
+      text: '#ffffff',           // White text
+      textSecondary: '#b3b3b3',  // Light grey secondary text
+      border: '#404040',         // Dark grey borders
+      error: '#F05E5E',          // R: 240; G: 94; B: 94 - Red
+      black: '#000000',          // R: 0; G: 0; B: 0 - Black
     },
   },
 }
@@ -76,6 +84,9 @@ export const buildTheme = ({ themeKey = DEFAULT_THEME_KEY, primary } = {}) => {
     colorText: colors.text,
     colorTextSecondary: colors.textSecondary,
     colorBorderSecondary: colors.border,
+    colorError: colors.error,
+    colorSuccess: colors.secondary,
+    colorWarning: colors.accent,
   }
 
   const baseConfig = {
