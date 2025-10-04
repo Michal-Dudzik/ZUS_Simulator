@@ -3,6 +3,7 @@ import { useTheme } from '../../common/hooks/useTheme';
 import SimulatorDashboard from '../simulator/components/SimulatorDashboard';
 import SectionHeader from './components/SectionHeader';
 import CuriositiesCard from '../curiosityCard/components/CuriositiesCard';
+import FAQ from '../faq/components/FAQ';
 import DataTable from '../dataTable/DataTable';
 import { sampleData, columns, handleExportExcel, handlePrint, handleRefresh } from '../dataTable/DataTableExample';
 import NewsSection from '../newsSection/NewsSection';
@@ -28,8 +29,10 @@ const HomePage = () => {
         <SimulatorDashboard />
         
         <CuriositiesCard />
+        
+        <FAQ />
 
-        <DataTable
+        {/* <DataTable
           data={sampleData}
           columns={columns}
           title="Losowy Przykład"
@@ -46,7 +49,7 @@ const HomePage = () => {
           onExportExcel={handleExportExcel}
           onPrint={handlePrint}
           onRefresh={handleRefresh}
-        />
+        /> */}
         
         <NewsSection />
   

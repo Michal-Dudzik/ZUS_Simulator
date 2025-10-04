@@ -132,8 +132,7 @@
 
 
 .simulator-expanded-content {
-  padding: 2rem;
-  border-top: 1px solid var(--ant-color-border, #d7dbe7);
+  
   animation: fadeInSlide 0.4s ease-out;
   position: relative;
   z-index: 1;
