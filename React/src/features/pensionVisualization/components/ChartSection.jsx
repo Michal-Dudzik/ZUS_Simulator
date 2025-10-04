@@ -3,7 +3,9 @@ import { Card, Segmented, Switch } from 'antd';
 import {
   LineChartOutlined,
   BarChartOutlined,
-  DollarOutlined
+  DollarOutlined,
+  PieChartOutlined,
+  ShoppingOutlined
 } from '@ant-design/icons';
 import {
   Chart as ChartJS,
@@ -21,9 +23,13 @@ import { Line, Bar } from 'react-chartjs-2';
 import {
   getBaseChartOptions,
   getComparisonChartOptions,
+  getContributionBreakdownOptions,
+  getExpenseForecastOptions,
   buildAccumulationChartData,
   buildPayoutChartData,
-  buildComparisonChartData
+  buildComparisonChartData,
+  buildContributionBreakdownChartData,
+  buildExpenseForecastChartData
 } from '../utils/chartConfigs';
 import './ChartSection.css';
 
@@ -48,6 +54,8 @@ const ChartSection = ({
   accumulationData,
   payoutData,
   comparisonData,
+  contributionBreakdownData,
+  expenseForecastData,
   extraYears,
   extraSalary,
   valorization
@@ -56,6 +64,8 @@ const ChartSection = ({
 
   const chartOptions = getBaseChartOptions();
   const comparisonChartOptions = getComparisonChartOptions();
+  const breakdownChartOptions = getContributionBreakdownOptions();
+  const expenseForecastOptions = getExpenseForecastOptions();
 
   const accumulationChartData = buildAccumulationChartData(
     accumulationData,
@@ -71,6 +81,14 @@ const ChartSection = ({
   );
 
   const comparisonChartDataConfig = buildComparisonChartData(comparisonData);
+  
+  const breakdownChartData = buildContributionBreakdownChartData(contributionBreakdownData);
+
+  const expenseForecastChartData = buildExpenseForecastChartData(
+    expenseForecastData,
+    extraYears,
+    extraSalary
+  );
 
   return (
     <Card className="chart-container-card">
@@ -80,22 +98,32 @@ const ChartSection = ({
           onChange={onChartTypeChange}
           options={[
             {
-              label: 'Akumulacja Kapitału',
+              label: 'Akumulacja',
               value: 'accumulation',
               icon: <LineChartOutlined />
             },
             {
-              label: 'Wypłata Emerytury',
+              label: 'Wypłata',
               value: 'pension-payout',
               icon: <DollarOutlined />
+            },
+            {
+              label: 'Wydatki',
+              value: 'expense-forecast',
+              icon: <ShoppingOutlined />
             },
             {
               label: 'Porównanie',
               value: 'comparison',
               icon: <BarChartOutlined />
+            },
+            {
+              label: 'Składki',
+              value: 'breakdown',
+              icon: <PieChartOutlined />
             }
           ]}
-          size="large"
+          size="middle"
         />
         
         <div className="chart-options">
@@ -136,6 +164,18 @@ const ChartSection = ({
           </>
         )}
 
+        {chartType === 'expense-forecast' && (
+          <>
+            <h3>Prognoza Wydatków na Emeryturze</h3>
+            <p className="chart-description">
+              Wykres pokazuje przewidywane wydatki życiowe i medyczne w trakcie emerytury. Wydatki na opiekę zdrowotną rosną wraz z wiekiem, szczególnie w późniejszych latach ze względu na potrzeby leczenia i leków.
+            </p>
+            <div className="chart-canvas">
+              <Bar data={expenseForecastChartData} options={expenseForecastOptions} />
+            </div>
+          </>
+        )}
+
         {chartType === 'comparison' && (
           <>
             <h3>Porównanie Emerytur</h3>
@@ -144,6 +184,18 @@ const ChartSection = ({
             </p>
             <div className="chart-canvas comparison-chart">
               <Bar data={comparisonChartDataConfig} options={comparisonChartOptions} />
+            </div>
+          </>
+        )}
+
+        {chartType === 'breakdown' && (
+          <>
+            <h3>Struktura Składek i Wzrostu Kapitału</h3>
+            <p className="chart-description">
+              Wykres pokazuje jak Twoje roczne składki ZUS oraz zyski z waloryzacji ({(valorization * 100).toFixed(1)}% rocznie) składają się na całkowity kapitał emerytalny.
+            </p>
+            <div className="chart-canvas">
+              <Bar data={breakdownChartData} options={breakdownChartOptions} />
             </div>
           </>
         )}

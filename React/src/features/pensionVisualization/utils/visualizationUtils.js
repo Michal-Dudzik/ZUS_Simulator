@@ -143,3 +143,104 @@ export const calculateChanges = (scenarioData, projectedPension, totalCapitalAcc
   
   return { pensionIncrease, capitalIncrease };
 };
+
+/**
+ * Generate contribution breakdown data showing annual contributions and valorization
+ */
+export const generateContributionBreakdownData = (
+  yearsOfWork,
+  currentAge,
+  monthlyIncome,
+  employmentType,
+  valorization,
+  t
+) => {
+  const years = [];
+  const zusContributions = [];
+  const valorizationGains = [];
+  const cumulativeCapital = [];
+  
+  const rates = getZusRates(employmentType, t);
+  const annualContribution = monthlyIncome * 12 * rates.totalRate;
+  
+  let totalCapital = 0;
+  
+  for (let year = 1; year <= Math.ceil(yearsOfWork); year++) {
+    years.push((currentAge + year).toString());
+    
+    // Add this year's contribution
+    zusContributions.push(annualContribution);
+    
+    // Calculate valorization gain on existing capital
+    const valorizationGain = totalCapital * valorization;
+    valorizationGains.push(valorizationGain);
+    
+    // Update total capital
+    totalCapital = totalCapital * (1 + valorization) + annualContribution;
+    cumulativeCapital.push(totalCapital);
+  }
+  
+  return {
+    years,
+    zusContributions,
+    valorization: valorizationGains,
+    cumulativeCapital
+  };
+};
+
+/**
+ * Generate retirement expense forecast data
+ * Expenses increase in later years due to healthcare and medication needs
+ */
+export const generateExpenseForecastData = (
+  retirementAge,
+  projectedPension,
+  scenarioData
+) => {
+  const years = [];
+  const basicExpenses = [];
+  const healthcareExpenses = [];
+  const totalExpenses = [];
+  const pensionIncome = [];
+  const scenarioPensionIncome = [];
+  
+  const lifeExpectancyYears = 18;
+  
+  // Base living expenses (60-70% of pension initially)
+  const baseExpenseRatio = 0.65;
+  
+  for (let year = 0; year <= lifeExpectancyYears; year++) {
+    const age = retirementAge + year;
+    years.push(age.toString());
+    
+    // Basic living expenses (relatively stable, slight increase with age)
+    const basicExpenseInflation = Math.pow(1.02, year); // 2% annual inflation
+    const baseExpense = projectedPension * baseExpenseRatio * basicExpenseInflation;
+    basicExpenses.push(baseExpense);
+    
+    // Healthcare expenses increase significantly with age
+    // Start at ~15% of pension, grow to ~40% in later years
+    const healthcareBaseRatio = 0.15;
+    const healthcareGrowthFactor = Math.pow(1.08, year); // 8% annual growth
+    const ageMultiplier = 1 + (year / lifeExpectancyYears) * 1.5; // Additional age factor
+    const healthcareExpense = projectedPension * healthcareBaseRatio * healthcareGrowthFactor * ageMultiplier;
+    healthcareExpenses.push(healthcareExpense);
+    
+    // Total expenses
+    const totalExpense = baseExpense + healthcareExpense;
+    totalExpenses.push(totalExpense);
+    
+    // Pension income for comparison
+    pensionIncome.push(projectedPension);
+    scenarioPensionIncome.push(scenarioData.pension);
+  }
+  
+  return {
+    years,
+    basicExpenses,
+    healthcareExpenses,
+    totalExpenses,
+    pensionIncome,
+    scenarioPensionIncome
+  };
+};

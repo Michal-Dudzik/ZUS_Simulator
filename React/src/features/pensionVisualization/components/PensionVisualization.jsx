@@ -8,6 +8,8 @@ import {
   generateAccumulationData,
   generatePayoutData,
   generateComparisonData,
+  generateContributionBreakdownData,
+  generateExpenseForecastData,
   calculateChanges
 } from '../utils/visualizationUtils';
 import MetricsCards from './MetricsCards';
@@ -15,6 +17,7 @@ import ScenarioControls from './ScenarioControls';
 import ChartSection from './ChartSection';
 import InsightsSection from './InsightsSection';
 import StatisticsSection from './StatisticsSection';
+import LifestyleComparison from './LifestyleComparison';
 import './PensionVisualization.css';
 
 const PensionVisualization = ({ results }) => {
@@ -98,6 +101,21 @@ const PensionVisualization = ({ results }) => {
 
   const comparisonData = generateComparisonData(projectedPension, scenarioData);
 
+  const contributionBreakdownData = generateContributionBreakdownData(
+    yearsOfWork,
+    currentAge,
+    monthlyIncome,
+    employmentType,
+    valorization,
+    t
+  );
+
+  const expenseForecastData = generateExpenseForecastData(
+    retirementAge,
+    projectedPension,
+    scenarioData
+  );
+
   // Calculate percentage changes
   const { pensionIncrease, capitalIncrease } = calculateChanges(
     scenarioData,
@@ -147,9 +165,17 @@ const PensionVisualization = ({ results }) => {
         accumulationData={accumulationData}
         payoutData={payoutData}
         comparisonData={comparisonData}
+        contributionBreakdownData={contributionBreakdownData}
+        expenseForecastData={expenseForecastData}
         extraYears={extraYears}
         extraSalary={extraSalary}
         valorization={valorization}
+      />
+
+      {/* Lifestyle Comparison Section */}
+      <LifestyleComparison
+        projectedPension={projectedPension}
+        totalCapitalAccumulated={totalCapitalAccumulated}
       />
 
       {/* Insights and Tips */}
