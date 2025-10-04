@@ -1,7 +1,11 @@
 // Current Polish pension statistics (2024 data)
 export const pensionData = {
   currentAverage: 2100, // PLN - current average pension in Poland
-  minimumPension: 1200, // PLN - minimum guaranteed pension
+  minimumPension: 1878.91, // PLN - minimum guaranteed pension (Poland 2024)
+  minimumWorkingYearsMen: 25, // Minimum years for men to qualify for minimum pension
+  minimumWorkingYearsWomen: 20, // Minimum years for women to qualify for minimum pension
+  minimumRetirementAgeMen: 65, // Minimum retirement age for men
+  minimumRetirementAgeWomen: 60, // Minimum retirement age for women
   pensionGroups: [
     {
       id: 'belowMinimum',
@@ -51,4 +55,24 @@ export const getPensionGroup = (amount) => {
   return pensionData.pensionGroups.find(group => 
     amount >= group.range.min && amount < group.range.max
   ) || pensionData.pensionGroups[pensionData.pensionGroups.length - 1];
+};
+
+// Helper function to check if user qualifies for minimum pension
+export const qualifiesForMinimumPension = (yearsOfWork, gender) => {
+  const minYearsRequired = gender === 'female' 
+    ? pensionData.minimumWorkingYearsWomen 
+    : pensionData.minimumWorkingYearsMen;
+  
+  return yearsOfWork >= minYearsRequired;
+};
+
+// Helper function to calculate final pension with minimum pension rules applied
+export const calculateFinalPension = (calculatedPension, yearsOfWork, gender) => {
+  const qualified = qualifiesForMinimumPension(yearsOfWork, gender);
+  
+  if (!qualified) {
+    return calculatedPension; // Return calculated amount if not qualified for minimum
+  }
+  
+  return Math.max(calculatedPension, pensionData.minimumPension);
 };
