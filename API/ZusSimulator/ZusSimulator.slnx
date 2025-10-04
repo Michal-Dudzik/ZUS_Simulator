@@ -3,5 +3,6 @@
     <Build />
   </Project>
   <Project Path="ZusSimulator.Data/ZusSimulator.Data.csproj" />
+  <Project Path="ZusSimulator.Services/ZusSimulator.Services.csproj" Id="c83a5a4e-d050-413e-9d9c-8e94a00c4a80" />
   <Project Path="ZusSimulator/ZusSimulator.csproj" />
 </Solution>

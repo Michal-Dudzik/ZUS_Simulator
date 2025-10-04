@@ -7,5 +7,9 @@ namespace ZusSimulator.Controllers
     [ApiController]
     public class ZusController : ControllerBase
     {
+        public IActionResult GetRetirment()
+        {
+            return Ok("Hello from ZusSimulator!");
+        }
     }
 }
