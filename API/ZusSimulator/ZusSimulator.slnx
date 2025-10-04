@@ -1,3 +1,7 @@
 <Solution>
+  <Project Path="docker-compose.dcproj">
+    <Build />
+  </Project>
+  <Project Path="ZusSimulator.Data/ZusSimulator.Data.csproj" />
   <Project Path="ZusSimulator/ZusSimulator.csproj" />
 </Solution>

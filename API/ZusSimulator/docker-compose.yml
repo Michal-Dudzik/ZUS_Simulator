@@ -1,0 +1,27 @@
+services:
+  zussimulator:
+    image: ${DOCKER_REGISTRY-}zussimulator
+    build:
+      context: .
+      dockerfile: ZusSimulator/Dockerfile
+    ports:
+    - "5000:5000"
+    networks:
+      - zusnet
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: zus
+      POSTGRES_PASSWORD: zus
+      POSTGRES_DB: zus
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - zusnet
+networks:
+    zusnet:
+        driver: bridge
+volumes:
+    postgres_data:
