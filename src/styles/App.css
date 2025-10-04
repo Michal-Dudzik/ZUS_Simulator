@@ -5,7 +5,7 @@
 }
 
 .app-layout {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -219,7 +219,7 @@
 
 .app-content {
   flex: 1;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .app-footer {
@@ -237,7 +237,7 @@
 }
 
 .content-wrapper {
-  height: 100%;
+  min-height: 100%;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -245,6 +245,19 @@
   align-items: center;
   padding: var(--content-padding);
   background: transparent;
+}
+
+.content-wrapper.home-page-wrapper {
+  min-height: auto;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+/* Override for home page to allow full scrolling */
+.home-page-container {
+  width: 100%;
+  min-height: auto;
+  display: block;
 }
 
 .calendar-image {
@@ -267,16 +280,34 @@
   opacity: 0.7;
 }
 
-.home-page-wrapper {
-  flex-direction: column;
-  gap: 1rem;
-  align-items: flex-start;
-  text-align: left;
+.home-page-container {
+  width: 100%;
+  min-height: auto;
+  padding: var(--content-padding);
+  background: transparent;
 }
 
-.welcome-container {
-  max-width: 800px;
+.home-page-content {
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.welcome-section {
+  width: 100%;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.features-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 0;
 }
 
 .welcome-title {
@@ -371,16 +402,12 @@
     --content-padding: 16px;
   }
   
-  body {
-    overflow: hidden;
-  }
-  
   .app-layout {
-    height: var(--actual-viewport-height, 100vh);
+    min-height: var(--actual-viewport-height, 100vh);
   }
   
   .app-content {
-    max-height: calc(var(--actual-viewport-height, 100vh) - var(--header-height) - var(--footer-height));
+    flex: 1;
   }
   
   .app-header {
@@ -413,9 +440,20 @@
     padding: 2px 6px;
   }
 
-  .home-page-wrapper {
-    gap: 0.5rem;
-    justify-content: start;
+  .home-page-container {
+    padding: 16px;
+  }
+
+  .home-page-content {
+    gap: 1.5rem;
+  }
+
+  .welcome-section {
+    padding: 1rem 0;
+  }
+
+  .features-section {
+    padding: 1rem 0;
   }
 
   .welcome-title {
