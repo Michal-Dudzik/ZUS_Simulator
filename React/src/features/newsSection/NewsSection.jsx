@@ -15,15 +15,7 @@ const NewsSection = () => {
     <Card
       className="news-section"
       style={{
-        margin: '2rem 0',
-        '--primary-color': colors.primary,
-        '--secondary-color': colors.secondary,
-        '--accent-color': colors.accent,
-        '--background-color': colors.background,
-        '--surface-color': colors.surface,
-        '--text-color': colors.text,
-        '--text-secondary-color': colors.textSecondary,
-        '--border-color': colors.border
+        margin: '1rem 0',
       }}
       styles={{
         body: {
