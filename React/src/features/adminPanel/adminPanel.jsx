@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import AppHeader from '../../common/components/AppHeader.jsx'
 import AppFooter from '../../common/components/AppFooter.jsx'
 import SideMenu from './components/SideMenu.jsx'
-import { useAuth } from './hooks/useAuth.js'
+// import { useAuth } from './hooks/useAuth.js'
 import useOnClickOutside from './hooks/useOnClickOutside.js'
 import useWindowSize from '../../common/hooks/useWindowSize.js'
 import { useTheme } from '../../common/hooks/useTheme.js'
@@ -16,7 +16,10 @@ import '../../styles/App.css'
 const { Content, Sider } = Layout
 
 const AdminLayout = () => {
-  const { session, loading, signOut } = useAuth()
+  // const { session, loading, signOut } = useAuth()
+  const session = null
+  const loading = false
+  const signOut = () => {}
   const { t } = useTranslation()
   const [siderCollapsed, setSiderCollapsed] = useState(true)
   const siderRef = useRef()
@@ -33,28 +36,29 @@ const AdminLayout = () => {
     }
   })
 
-  if (loading) {
-    return (
-      <Layout className="loading-container">
-        <Content>
-          <p>{t('admin.loading')}</p>
-        </Content>
-      </Layout>
-    )
-  }
+  // if (loading) {
+  //   return (
+  //     <Layout className="loading-container">
+  //       <Content>
+  //         <p>{t('admin.loading')}</p>
+  //       </Content>
+  //     </Layout>
+  //   )
+  // }
 
-  if (!session) {
-    return null
-  }
+  // if (!session) {
+  //   return null
+  // }
 
-  const handleLogout = async () => {
-    const { error } = await signOut()
-    if (error) {
-      message.error(error.message || 'Unable to log out right now.')
-    } else {
-      message.success('Logged out.')
-    }
-  }
+  // const handleLogout = async () => {
+  //   const { error } = await signOut()
+  //   if (error) {
+  //     message.error(error.message || 'Unable to log out right now.')
+  //   } else {
+  //     message.success('Logged out.')
+  //   }
+  // }
+  const handleLogout = () => {}
 
   const menuButton = (
     <Button
