@@ -180,6 +180,9 @@
       "i18n": "Internationalization support",
       "admin": "Admin panel with authentication",
       "responsive": "Responsive design with Ant Design"
+    },
+    "curiosities": {
+      "title": "Retirement System Curiosities"
     }
   },
   "navigation": {

@@ -1,0 +1,65 @@
+/* Simplified CSS - most styling now handled by Ant Design components */
+.curiosities-card {
+  width: 100%;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.curiosities-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+.curiosities-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.curiosities-content.hidden {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.nav-button:hover {
+  color: var(--secondary-color) !important;
+  transform: translateY(-50%) scale(1.1) !important;
+}
+
+.nav-button:active {
+  transform: translateY(-50%) scale(0.95) !important;
+}
+
+/* Mobile responsiveness - simplified for Ant Design */
+@media (max-width: 768px) {
+  .curiosities-card .ant-card-body {
+    padding: 1rem !important;
+  }
+  
+  .curiosities-card .nav-button {
+    width: 35px !important;
+    height: 35px !important;
+    font-size: 1.5rem !important;
+  }
+  
+  .curiosities-content {
+    margin: 0 35px !important;
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 0.75rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .curiosities-card .ant-card-body {
+    padding: 0.75rem !important;
+  }
+  
+  .curiosities-card .nav-button {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 1.2rem !important;
+  }
+  
+  .curiosities-content {
+    margin: 0 30px !important;
+  }
+}

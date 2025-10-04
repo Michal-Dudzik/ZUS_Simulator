@@ -175,6 +175,9 @@
       "i18n": "Wsparcie internacjonalizacji",
       "admin": "Panel administratora z uwierzytelnianiem",
       "responsive": "Responsywny design z Ant Design"
+    },
+    "curiosities": {
+      "title": "Ciekawostki o systemie emerytalnym"
     }
   },
   "navigation": {

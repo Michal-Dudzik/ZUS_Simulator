@@ -6,7 +6,7 @@ const THEME_DEFINITIONS = {
     label: 'Light',
     mode: 'light',
     colors: {
-      primary: '#00993F',        // R: 0; G: 153; B: 63 - ZUS Green (always primary)
+      primary: '#11783b',        // R: 0; G: 153; B: 63 - ZUS Green (always primary)
       secondary: '#FFB34F',      // R: 255; G: 179; B: 79 - Orange
       accent: '#3F84D2',         // R: 63; G: 132; B: 210 - Blue
       background: '#f5f6fb',     // Very light background for subtle depth

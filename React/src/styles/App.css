@@ -245,3 +245,86 @@
     font-size: 1.25rem;
   }
 }
+
+/* Charts Section Styles */
+.charts-section {
+  margin: 2rem 0;
+  padding: 1rem 0;
+}
+
+.charts-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.chart-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.chart-row:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive charts */
+@media (max-width: 1200px) {
+  .chart-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .charts-section {
+    margin: 1.5rem 0;
+    padding: 0.5rem 0;
+  }
+  
+  .charts-grid {
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  
+  .chart-row {
+    gap: 0.75rem;
+  }
+}
+
+/* Chart container adjustments for better spacing */
+.charts-section .chart-container {
+  margin-bottom: 0;
+}
+
+.charts-section .chart-container .ant-card {
+  height: 100%;
+}
+
+.charts-section .chart-container .ant-card-body {
+  padding: 16px;
+}
+
+/* Dark theme adjustments for charts */
+.theme-dark .charts-section {
+  background: transparent;
+}
+
+.theme-dark .chart-container {
+  background: #2d2d2d;
+  border-color: #404040;
+}
+
+/* Chart hover effects */
+.chart-container:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
+}
+
+/* Ensure charts are responsive */
+.chart-container canvas {
+  max-width: 100%;
+  height: auto;
+}

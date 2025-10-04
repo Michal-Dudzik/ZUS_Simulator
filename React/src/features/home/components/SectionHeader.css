@@ -1,0 +1,157 @@
+.section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  max-width: 100%;
+}
+
+.section-header__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  height: 79px;
+  color: #6b7280; /* Grey color for the icon */
+  margin-bottom: 0.25rem;
+  font-size: 48px;
+}
+
+.section-header__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.section-header__title {
+  font-size: 2.57143rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  color: #000000;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.section-header__date {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.section-header__date-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #000000;
+  line-height: 0.8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+}
+
+.section-header__date-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.section-header__date-month,
+.section-header__date-year {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #000000;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+}
+
+.section-header__separator {
+  width: 100%;
+  max-width: 200px;
+  height: 1px;
+  background-color: #d1d5db; /* Light grey separator */
+  margin: 0.5rem 0;
+}
+
+.section-header__link {
+  color: #00993F; /* ZUS Green from theme */
+  text-decoration: underline;
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  transition: color 0.2s ease;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.section-header__link:hover {
+  color: #007a32; /* Darker green on hover */
+  text-decoration: underline;
+}
+
+.section-header__link:focus {
+  outline: 2px solid #00993F;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Dark theme styles */
+.section-header.theme-dark .section-header__title,
+.section-header.theme-dark .section-header__date-number,
+.section-header.theme-dark .section-header__date-month,
+.section-header.theme-dark .section-header__date-year {
+  color: #ffffff;
+}
+
+.section-header.theme-dark .section-header__icon {
+  color: #9ca3af; /* Lighter grey for dark theme */
+}
+
+.section-header.theme-dark .section-header__separator {
+  background-color: #4b5563; /* Darker separator for dark theme */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .section-header {
+    padding: 1rem 0;
+    gap: 0.5rem;
+  }
+  
+  .section-header__icon {
+    width: 56px;
+    height: 56px;
+    font-size: 40px;
+  }
+  
+  .section-header__title {
+    font-size: 1.5rem;
+  }
+  
+  .section-header__date-number {
+    font-size: 2rem;
+  }
+  
+  .section-header__date-month,
+  .section-header__date-year {
+    font-size: 0.9rem;
+  }
+  
+  .section-header__link {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-header__title {
+    font-size: 1.25rem;
+  }
+  
+  .section-header__date-number {
+    font-size: 1.75rem;
+  }
+  
+  .section-header__date-month,
+  .section-header__date-year {
+    font-size: 0.8rem;
+  }
+}
