@@ -6,7 +6,7 @@ import { getThemeDefinition } from '../../../styles/theme';
 import NewsCard from './NewsCard';
 import './NewsCarousel.css';
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 const NewsCarousel = ({ articles, title = "Aktualności" }) => {
   const { isDark } = useTheme();
@@ -87,17 +87,29 @@ const NewsCarousel = ({ articles, title = "Aktualności" }) => {
       }}
     >
       <div className="news-carousel-header">
-        <Title 
-          level={3} 
-          style={{ 
-            margin: 0, 
-            color: colors.text,
-            fontSize: '1.5rem',
-            fontWeight: 600
-          }}
-        >
-          {title}
-        </Title>
+        <div className="news-carousel-title-wrapper">
+          <Title 
+            level={3} 
+            style={{ 
+              margin: 0, 
+              color: colors.text,
+              fontSize: '1.5rem',
+              fontWeight: 600
+            }}
+          >
+            {title}
+          </Title>
+          <Text 
+            style={{ 
+              color: colors.textSecondary,
+              fontSize: '0.9rem',
+              marginTop: '0.25rem',
+              display: 'block'
+            }}
+          >
+            Artykuły dopasowane do twoich potrzeb
+          </Text>
+        </div>
         <Space>
           <Button
             type="text"

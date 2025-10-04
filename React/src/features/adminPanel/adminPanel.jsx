@@ -69,7 +69,7 @@ const AdminLayout = () => {
     />
   )
 
-  const headerActions = (
+  const headerLeftActions = (
     <div className="header-actions-group">
       {menuButton}
     </div>
@@ -77,16 +77,17 @@ const AdminLayout = () => {
 
   return (
     <Layout className="app-layout">
-      <AppHeader actions={headerActions} />
+      <AppHeader leftActions={headerLeftActions} />
       <Layout>
         <Sider
           ref={siderRef}
-          collapsedWidth="80"
+          collapsedWidth={0}
           theme={isDark ? 'dark' : 'light'}
           className="admin-sider"
           collapsed={siderCollapsed}
           trigger={null}
           width={250}
+          breakpoint="md"
         >
           <SideMenu onLogout={handleLogout} collapsed={siderCollapsed} />
         </Sider>

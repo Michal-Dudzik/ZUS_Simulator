@@ -13,6 +13,12 @@
   padding: 0 1rem;
 }
 
+.news-carousel-title-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
 .news-carousel-wrapper {
   position: relative;
   width: 100%;

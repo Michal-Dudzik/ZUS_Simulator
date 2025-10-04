@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Tooltip } from 'antd';
-import { pensionData, formatCurrency } from '../data/pensionData';
+import { pensionData, formatCurrency } from '../../simulator/data/pensionData';
 import './PensionVisualization.css';
 
 const PensionVisualization = () => {

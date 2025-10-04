@@ -1,5 +1,15 @@
 .admin-sider {
     padding: 16px;
+    height: calc(100vh - var(--header-height) - var(--footer-height)) !important;
+    overflow-y: auto;
+}
+
+.admin-sider.ant-layout-sider-light {
+    background: var(--ant-color-bg-container, #ffffff);
+}
+
+.admin-sider.ant-layout-sider-dark {
+    background: var(--ant-color-bg-container, #001529);
 }
 
 .admin-side-menu {
@@ -28,7 +38,8 @@
 .admin-content-wrapper {
     padding: 1rem;
     overflow: auto;
-    height: 100%;
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    background: transparent;
 }
 
 /* Loading State */
@@ -116,27 +127,54 @@
     margin-top: auto;
 }
 
+/* Desktop styles */
+@media (min-width: 769px) {
+    .admin-sider {
+        position: relative !important;
+        height: calc(100vh - var(--header-height) - var(--footer-height)) !important;
+    }
+
+    .admin-sider.ant-layout-sider-collapsed {
+        flex: 0 0 0px !important;
+        max-width: 0px !important;
+        min-width: 0px !important;
+        width: 0px !important;
+    }
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
 
     .admin-sider {
         position: fixed !important;
-        top: var(--header-height);
+        top: var(--header-height) !important;
         left: 0;
-        height: calc(var(--actual-viewport-height, 100vh) - var(--header-height) - var(--footer-height));
+        height: calc(var(--actual-viewport-height, 100vh) - var(--header-height) - var(--footer-height)) !important;
         z-index: 999;
         box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
         transform: translateX(0);
         transition: transform 0.3s ease;
+        max-width: 250px;
     }
 
     .admin-sider.ant-layout-sider-collapsed {
         transform: translateX(-100%);
     }
 
+    .admin-sider.ant-layout-sider-light {
+        background: var(--ant-color-bg-container, #ffffff);
+        border-right: 1px solid var(--ant-color-border, #d7dbe7);
+    }
+
+    .admin-sider.ant-layout-sider-dark {
+        background: var(--ant-color-bg-container, #001529);
+        border-right: 1px solid var(--ant-color-border, #1f1f1f);
+    }
+
     .admin-content-wrapper {
         padding: 12px;
         width: 100%;
+        margin-left: 0 !important;
     }
 
     .qr-code-container {
@@ -181,28 +219,27 @@
 .admin-menu.ant-menu-vertical,
 .logout-menu.ant-menu-vertical {
     border-inline-end: none !important;
+    background: transparent;
 }
 
 .admin-menu .ant-menu-item,
 .logout-menu .ant-menu-item {
     margin-bottom: 1rem;
+    border-radius: 8px;
 }
 
-.ant-layout-sider-trigger {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    cursor: pointer;
-    background-color: #f0f2f5;
-    text-align: center;
-    padding: 10px 0;
-    z-index: 1;
+.admin-menu .ant-menu-item:hover,
+.logout-menu .ant-menu-item:hover {
+    background: var(--ant-color-primary-bg, rgba(0, 153, 63, 0.1));
 }
 
-.ant-layout-sider-has-trigger .ant-layout-sider-children {
-    padding-bottom: 48px;
+.admin-menu .ant-menu-item-selected,
+.logout-menu .ant-menu-item-selected {
+    background: var(--ant-color-primary-bg, rgba(0, 153, 63, 0.15)) !important;
+    color: var(--ant-color-primary, #00993F) !important;
 }
+
+/* Removed unused trigger styles - using custom button in header */
 
 /* Custom Scrollbar Styles for PageLayout */
 .page-content-card .ant-card-body::-webkit-scrollbar {

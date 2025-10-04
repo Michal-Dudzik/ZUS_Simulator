@@ -3,22 +3,39 @@ import { useTranslation } from 'react-i18next'
 export const useLanguage = () => {
   const { i18n, t } = useTranslation()
 
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang)
+    localStorage.setItem('dmp-language', lang)
+  }
+
   const toggleLanguage = () => {
-    const newLanguage = i18n.language === 'en' ? 'pl' : 'en'
-    i18n.changeLanguage(newLanguage)
-    localStorage.setItem('dmp-language', newLanguage)
+    const languages = ['pl', 'en', 'ua']
+    const currentIndex = languages.indexOf(i18n.language)
+    const nextIndex = (currentIndex + 1) % languages.length
+    changeLanguage(languages[nextIndex])
   }
 
   const getLanguageText = () => {
-    return i18n.language === 'en' ? 'EN' : 'PL'
+    const languageMap = {
+      'en': 'EN',
+      'pl': 'PL',
+      'ua': 'UA'
+    }
+    return languageMap[i18n.language] || 'PL'
   }
 
   const getOtherLanguageText = () => {
-    return i18n.language === 'en' ? 'PL' : 'EN'
+    const languages = ['PL', 'EN', 'UA']
+    const currentIndex = languages.findIndex(lang => 
+      lang === getLanguageText()
+    )
+    const nextIndex = (currentIndex + 1) % languages.length
+    return languages[nextIndex]
   }
 
   return {
     language: i18n.language,
+    changeLanguage,
     toggleLanguage,
     getLanguageText,
     getOtherLanguageText,

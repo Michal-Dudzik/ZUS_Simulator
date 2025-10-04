@@ -1,5 +1,14 @@
 :root {
   --content-padding: 0px;
+  --header-height: 64px;
+  --footer-height: 64px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: 56px;
+    --footer-height: 56px;
+  }
 }
 
 .app-layout {
@@ -61,6 +70,105 @@
 .logo {
   height: 40px;
   width: auto;
+}
+
+/* Header Styles */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.header-left-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-actions {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-actions-group .ant-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.header-actions-group .ant-btn:hover {
+  background: var(--ant-color-primary-bg, rgba(0, 153, 63, 0.1));
+}
+
+/* Footer Styles */
+.app-footer {
+  position: relative;
+  width: 100%;
+  height: var(--footer-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.language-switcher,
+.theme-switcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.language-switcher:hover,
+.theme-switcher:hover {
+  background: var(--ant-color-primary-bg, rgba(0, 153, 63, 0.1));
+  color: var(--ant-color-primary, #00993F);
+}
+
+.language-switcher .anticon,
+.theme-switcher .anticon {
+  font-size: 16px;
 }
 
 
@@ -195,10 +303,6 @@
 
 
 @media (max-width: 768px) {
-  :root {
-    --content-padding: 0px;
-  }
-  
   .app-layout {
     min-height: var(--actual-viewport-height, 100vh);
   }
@@ -210,6 +314,31 @@
   
   .logo {
     height: 32px;
+  }
+  
+  .app-header {
+    padding: 0 16px;
+  }
+
+  .app-footer {
+    padding: 0 16px;
+    font-size: 12px;
+  }
+
+  .language-switcher,
+  .theme-switcher {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+
+  .language-switcher .anticon,
+  .theme-switcher .anticon {
+    font-size: 14px;
+  }
+
+  .header-actions-group .ant-btn {
+    height: 36px;
+    width: 36px;
   }
   
   .calendar-image {

@@ -1,51 +1,44 @@
 /* Simulation Content Styles */
 .simulation-content {
-  padding: 0;
+  width: 100%;
 }
 
-.content-header {
-  text-align: center;
-  margin-bottom: 2rem;
-  padding: 1rem 0;
+.unified-simulation {
+  width: 100%;
 }
 
-.content-icon {
-  font-size: 2.5rem;
-  color: var(--ant-color-primary, #00993F);
-  margin-bottom: 1rem;
-  display: block;
-}
-
-.content-header h3 {
-  font-size: 1.75rem;
+.section-title {
+  font-size: 1.5rem;
   font-weight: 600;
-  margin: 0 0 0.5rem 0;
   color: var(--ant-color-text, #000000);
+  margin: 0 0 0.5rem 0;
 }
 
-.content-header p {
+.section-description {
   font-size: 1rem;
   color: var(--ant-color-text-secondary, #4d5672);
-  margin: 0;
+  margin: 0 0 1.5rem 0;
   line-height: 1.5;
 }
 
 .simulation-form {
+  width: 100%;
   margin-bottom: 2rem;
 }
 
 .form-actions {
-  text-align: center;
-  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
 .calculate-button {
   height: 48px;
   font-size: 1.1rem;
   font-weight: 600;
-  padding: 0 2rem;
+  padding: 0 3rem;
   border-radius: 8px;
-  min-width: 200px;
+  min-width: 250px;
 }
 
 .results-preview {
@@ -254,17 +247,7 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.quick-simulation .simulation-form {
-  max-width: 600px;
-  margin: 0 auto 2rem auto;
-}
-
 /* Detailed Simulation Specific Styles */
-.detailed-simulation .simulation-form {
-  max-width: 800px;
-  margin: 0 auto 2rem auto;
-}
-
 .detailed-simulation .results-grid {
   grid-template-columns: repeat(3, 1fr);
 }
@@ -289,21 +272,10 @@
     grid-template-columns: 1fr;
   }
 
-  .simulation-form {
-    max-width: none;
-  }
-
   .calculate-button {
     width: 100%;
     min-width: auto;
-  }
-
-  .content-icon {
-    font-size: 2rem;
-  }
-
-  .content-header h3 {
-    font-size: 1.5rem;
+    padding: 0 2rem;
   }
 
   /* Mobile Main Result Card */

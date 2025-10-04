@@ -86,12 +86,14 @@
   transition: all 0.2s ease;
 }
 
-.quick-button {
+.quick-button,
+.start-button {
   background: var(--ant-color-primary, #00993F);
   border-color: var(--ant-color-primary, #00993F);
 }
 
-.quick-button:hover {
+.quick-button:hover,
+.start-button:hover {
   background: #007a32;
   border-color: #007a32;
   transform: translateY(-1px);
@@ -132,7 +134,6 @@
 
 
 .simulator-expanded-content {
-  
   animation: fadeInSlide 0.4s ease-out;
   position: relative;
   z-index: 1;
@@ -141,10 +142,10 @@
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  /* Smooth scrolling for better UX */
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   max-height: calc(80vh - 100px);
+  padding: 2rem;
 }
 
 /* Custom scrollbar styling for expanded content */

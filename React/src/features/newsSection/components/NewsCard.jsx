@@ -46,15 +46,7 @@ const NewsCard = ({ article }) => {
         }
       }}
     >
-      <div className="news-card-image">
-        <img 
-          src={article.image} 
-          alt={article.title}
-          onError={(e) => {
-            e.target.src = '/src/assets/no_image.png';
-          }}
-        />
-      </div>
+
       
       <div className="news-card-content">
         <div className="news-card-header">

@@ -22,7 +22,7 @@ const AppFooter = () => {
         <GlobalOutlined /> {getOtherLanguageText()}
       </div>
       
-      <span>©{new Date().getFullYear()} MIRAI IT Solutions</span>
+      <span>©{new Date().getFullYear()} Boże Danusia Serduszkoe Moje</span>
 
       <div className="theme-switcher" onClick={toggleTheme}>
         {isDark ? <SunOutlined /> : <MoonOutlined />}
