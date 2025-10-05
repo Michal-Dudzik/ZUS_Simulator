@@ -166,6 +166,7 @@
       },
       "refresh": "Odśwież",
       "export": "Eksportuj dane",
+      "exportError": "Nie udało się wyeksportować danych. Spróbuj ponownie.",
       "clearData": "Wyczyść dane",
       "confirmClear": "Czy na pewno chcesz usunąć wszystkie dane analityczne? Tej operacji nie można cofnąć.",
       "noData": "Brak danych użytkowania symulatora",
@@ -186,6 +187,10 @@
       "ageDistribution": "Rozkład wieku",
       "incomeDistribution": "Rozkład dochodów",
       "insights": "Dodatkowe informacje",
+      "pensionRatio": "Stosunek emerytury do dochodu",
+      "weeklyAvg": "Średnie tygodniowe użycie",
+      "avgYearsUntilRetirement": "Średnia liczba lat do emerytury",
+      "mostActiveDay": "Najbardziej aktywny dzień",
       "avgRetirementAgeMale": "Średni wiek emerytalny (Mężczyźni)",
       "avgRetirementAgeFemale": "Średni wiek emerytalny (Kobiety)",
       "mostCommonEmployment": "Najczęstszy typ zatrudnienia",
@@ -319,6 +324,18 @@
   "simulator": {
     "title": "Symulator ZUS",
     "description": "Sprawdź jak może wyglądać Twoja przyszłość!",
+    "form": {
+      "gender": {
+        "male": "Mężczyzna",
+        "female": "Kobieta"
+      },
+      "employmentType": {
+        "employment": "Umowa o pracę",
+        "b2b": "Kontrakt B2B",
+        "self-employed": "Samozatrudnienie",
+        "contract": "Umowa kontraktowa"
+      }
+    },
     "pensionIntro": {
       "question": "Jaką chciałbyś/chciałabyś mieć emeryturę w przyszłości?",
       "currentAverage": "Obecna średnia emerytura w Polsce",

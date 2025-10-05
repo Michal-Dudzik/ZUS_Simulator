@@ -9,7 +9,7 @@
 }
 
 .admin-sider.ant-layout-sider-dark {
-    background: var(--ant-color-bg-container, #001529);
+    background: var(--ant-color-bg-container, #1f1f1f);
 }
 
 .admin-side-menu {

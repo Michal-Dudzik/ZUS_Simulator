@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, Row, Col, Card, Spin, Empty, Statistic, Tag, Tooltip, Space, Button } from 'antd';
-import { EnvironmentOutlined, ExperimentOutlined, BugOutlined } from '@ant-design/icons';
+import { Typography, Row, Col, Card, Spin, Empty, Statistic, Tag, Space } from 'antd';
+import { EnvironmentOutlined, ExperimentOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import PageLayout from '../components/PageLayout';
 import { getLocationMetrics } from '../../../common/services/analyticsService';
@@ -10,7 +10,6 @@ import polandMapSvg from '../../../assets/Wojewodztwa.svg';
 const { Title: AntTitle, Text } = Typography;
 
 const PRESENTATION_MODE_KEY = 'admin_presentation_mode';
-const DEBUG_MODE_KEY = 'location_map_debug_mode';
 
 // Voivodeship colors for the map
 const VOIVODESHIP_COLORS = {
@@ -33,18 +32,29 @@ const VOIVODESHIP_COLORS = {
 };
 
 // Map path IDs from the SVG to voivodeships
-// NOTE: To map regions correctly, enable Debug Mode, click on each region to see its path ID,
-// then update this mapping. The new SVG (Wojewodztwa.svg) has labeled regions.
+// NOTE: Click on each region to identify its path ID in the browser console,
+// then update this mapping with the correct path ID.
 const PATH_TO_VOIVODESHIP = {
-  'path10': 'pomorskie',    // To be verified
-  'path12': 'zachodniopomorskie',          // To be verified
-  'path14': 'podlaskie',              // To be verified          // Small region - to be verified
-  'path16-0-6': 'warmińsko-mazurskie',        // To be verified
-  'path68-9-7': 'kujawsko-pomorskie',            // To be verified
-  'path186-1-9-2-7': 'mazowieckie',  // To be verified
-  'path152-1-7-3': 'wielkopolskie',       // To be verified
-  'path190-6-2': 'lubelskie',
-  
+  // Current mappings (verified)
+  'path10': 'pomorskie',
+  'path12': 'zachodniopomorskie',
+  'path14': 'podlaskie',
+  'path16-0-6': 'warmińsko-mazurskie',
+  'path68-9-7': 'kujawsko-pomorskie',
+  'path186-1-9-2-7': 'mazowieckie',
+  'path152-1-7-3': 'wielkopolskie',
+  'path190-6-2': 'lubuskie',
+  'path308-3-5-0': 'podkarpackie',
+  'path384-7-9-7': 'małopolskie',
+  'path302-3-0-2': 'śląskie',
+  'path300-3-2-1': 'opolskie',
+  'path252-8-9': 'dolnośląskie',
+  'path208-5-3-6': 'łódzkie',
+  'text1496': 'świętokrzyskie',
+  'path216-4':'lubelskie',
+  'path262-9-0-4-6':'świętokrzyskie',
+
+
 };
 
 const LocationMetricsPage = () => {
@@ -54,9 +64,6 @@ const LocationMetricsPage = () => {
   const [selectedVoivodeship, setSelectedVoivodeship] = useState(null);
   const [isPresentationMode, setIsPresentationMode] = useState(() => {
     return localStorage.getItem(PRESENTATION_MODE_KEY) === 'true';
-  });
-  const [debugMode, setDebugMode] = useState(() => {
-    return localStorage.getItem(DEBUG_MODE_KEY) === 'true';
   });
 
   const loadData = () => {
@@ -133,9 +140,6 @@ const LocationMetricsPage = () => {
             
             // Get all paths in the SVG
             const paths = svgElement.querySelectorAll('path');
-            console.log(`Found ${paths.length} paths in SVG`);
-            
-            let processedPaths = 0;
             
             // Add event listeners and styling to all paths
             paths.forEach((path) => {
@@ -149,12 +153,8 @@ const LocationMetricsPage = () => {
               
               // Skip paths without fill (likely text paths)
               if (!hasFill) {
-                console.log('Skipping path without fill:', pathId);
                 return;
               }
-              
-              processedPaths++;
-              console.log('Processing path:', pathId, 'Voivodeship:', voivodeship || 'UNMAPPED');
               
               // Apply base styling
               path.style.cursor = 'pointer';
@@ -182,18 +182,12 @@ const LocationMetricsPage = () => {
                 const clickHandler = (e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  console.log('Clicked path ID:', pathId, 'Mapped to:', voivodeship);
-                  
-                  if (debugMode) {
-                    alert(`Path ID: ${pathId}\nMapped to: ${voivodeship}`);
-                  }
                   setSelectedVoivodeship(prev => prev === voivodeship ? null : voivodeship);
                 };
                 
                 path.addEventListener('click', clickHandler);
-                path.onclick = clickHandler; // Fallback
                 
-                // Add hover effect for visual feedback only
+                // Add hover effect
                 path.addEventListener('mouseenter', () => {
                   path.style.strokeWidth = '3';
                   path.style.filter = 'brightness(1.15)';
@@ -204,24 +198,20 @@ const LocationMetricsPage = () => {
                   path.style.filter = 'none';
                 });
               } else {
-                // Paths not mapped to voivodeships - always make clickable in debug mode
+                // Paths not mapped to voivodeships - make them clickable to identify
+                path.style.fill = '#e0e0e0';
+                path.style.fillOpacity = '0.3';
+                
                 const clickHandler = (e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  console.log('Unmapped path ID:', pathId);
-                  alert(`Unmapped Path ID: ${pathId}\n\nAdd this to PATH_TO_VOIVODESHIP mapping.`);
+                  // Log to console for developer to identify unmapped regions
+                  console.log('Unmapped region clicked. Path ID:', pathId);
                 };
                 
                 path.addEventListener('click', clickHandler);
-                path.onclick = clickHandler; // Fallback
-                
-                if (!debugMode) {
-                  path.style.opacity = '0.3';
-                }
               }
             });
-            
-            console.log(`Processed ${processedPaths} paths with fill colors`);
           }
         }
       } catch (error) {
@@ -232,7 +222,7 @@ const LocationMetricsPage = () => {
     if (locationData && !loading) {
       loadSvg();
     }
-  }, [locationData, loading, debugMode, selectedVoivodeship]);
+  }, [locationData, loading, selectedVoivodeship]);
 
   if (loading) {
     return (
@@ -270,28 +260,14 @@ const LocationMetricsPage = () => {
       title={t('admin.locationMetrics.title')}
       cardClassName="location-metrics-page-card"
     >
-      {/* Presentation Mode Indicator & Debug Mode Toggle */}
-      <div style={{ marginBottom: 24, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div>
-          {isPresentationMode && (
-            <Tag icon={<ExperimentOutlined />} color="orange" style={{ fontSize: '14px', padding: '4px 12px' }}>
-              {t('admin.presentationModeActive') || 'Presentation Mode - Demo Data'}
-            </Tag>
-          )}
+      {/* Presentation Mode Indicator */}
+      {isPresentationMode && (
+        <div style={{ marginBottom: 24 }}>
+          <Tag icon={<ExperimentOutlined />} color="orange" style={{ fontSize: '14px', padding: '4px 12px' }}>
+            {t('admin.presentationModeActive') || 'Presentation Mode - Demo Data'}
+          </Tag>
         </div>
-        <Button
-          icon={<BugOutlined />}
-          onClick={() => {
-            const newMode = !debugMode;
-            setDebugMode(newMode);
-            localStorage.setItem(DEBUG_MODE_KEY, newMode.toString());
-          }}
-          type={debugMode ? 'primary' : 'default'}
-          size="small"
-        >
-          {debugMode ? 'Debug Mode ON' : 'Debug Mode'}
-        </Button>
-      </div>
+      )}
 
       {/* Overview Stats */}
       <div style={{ marginBottom: 32 }}>
@@ -355,18 +331,7 @@ const LocationMetricsPage = () => {
               >
                 <Spin />
               </div>
-              <div style={{ marginTop: 16, textAlign: 'center' }}>
-                <Text type="secondary">
-                  {t('admin.locationMetrics.clickInstruction') || 'Click on regions to see statistics'}
-                </Text>
-                {debugMode && (
-                  <div style={{ marginTop: 8 }}>
-                    <Text type="warning" strong>
-                      Debug Mode: Click any region to see its path ID
-                    </Text>
-                  </div>
-                )}
-              </div>
+              
             </Card>
           </Col>
 

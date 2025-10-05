@@ -171,6 +171,7 @@
       },
       "refresh": "Refresh",
       "export": "Export Data",
+      "exportError": "Failed to export data. Please try again.",
       "clearData": "Clear Data",
       "confirmClear": "Are you sure you want to clear all analytics data? This cannot be undone.",
       "noData": "No simulator usage data available yet",
@@ -191,6 +192,10 @@
       "ageDistribution": "Age Distribution",
       "incomeDistribution": "Income Distribution",
       "insights": "Additional Insights",
+      "pensionRatio": "Pension/Income Ratio",
+      "weeklyAvg": "Weekly Avg Usage",
+      "avgYearsUntilRetirement": "Avg Years Until Retirement",
+      "mostActiveDay": "Most Active Day",
       "avgRetirementAgeMale": "Avg Retirement Age (Male)",
       "avgRetirementAgeFemale": "Avg Retirement Age (Female)",
       "mostCommonEmployment": "Most Common Employment Type",
@@ -324,6 +329,18 @@
   "simulator": {
     "title": "ZUS Simulator",
     "description": "Check what pension you can receive in the future",
+    "form": {
+      "gender": {
+        "male": "Male",
+        "female": "Female"
+      },
+      "employmentType": {
+        "employment": "Employment Contract",
+        "b2b": "B2B Contract",
+        "self-employed": "Self-Employed",
+        "contract": "Contract Work"
+      }
+    },
     "pensionIntro": {
       "question": "What kind of pension would you like to have in the future?",
       "currentAverage": "Current average pension in Poland",

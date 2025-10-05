@@ -333,7 +333,7 @@ function getVoivodeshipFromPostalCode(postalCode) {
   // Polish postal code to voivodeship mapping
   // Format: XX-XXX where XX is the key prefix
   if (numCode >= 0 && numCode <= 9) return 'mazowieckie';
-  if (numCode >= 10 && numCode <= 19) return 'warmińsko-mazurskie';
+  if (numCode >= 10 && numCode <= 14) return 'warmińsko-mazurskie';
   if (numCode >= 15 && numCode <= 19) return 'podlaskie';
   if (numCode >= 20 && numCode <= 24) return 'lubelskie';
   if (numCode >= 25 && numCode <= 28) return 'świętokrzyskie';

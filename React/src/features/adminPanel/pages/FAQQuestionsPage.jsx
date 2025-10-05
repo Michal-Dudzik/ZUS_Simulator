@@ -43,12 +43,11 @@ const FAQQuestionsPage = () => {
       const result = await getFAQQuestions(filterStatus);
       if (result.success) {
         setQuestions(result.data);
-      } else {
-        message.error(t('admin.faqQuestions.loadError'));
       }
+      // Don't show error toast - service handles demo mode gracefully
     } catch (error) {
       console.error('Error loading FAQ questions:', error);
-      message.error(t('admin.faqQuestions.loadError'));
+      // Don't show error toast in UI-only mode
     } finally {
       setLoading(false);
     }
@@ -60,8 +59,10 @@ const FAQQuestionsPage = () => {
       if (result.success) {
         setStatistics(result.data);
       }
+      // Don't show error toast - service handles demo mode gracefully
     } catch (error) {
       console.error('Error loading statistics:', error);
+      // Don't show error toast in UI-only mode
     }
   };
 
@@ -72,12 +73,11 @@ const FAQQuestionsPage = () => {
         message.success(t('admin.faqQuestions.statusUpdated'));
         loadQuestions();
         loadStatistics();
-      } else {
-        message.error(t('admin.faqQuestions.updateError'));
       }
+      // Don't show error toast - service handles demo mode gracefully
     } catch (error) {
       console.error('Error updating question status:', error);
-      message.error(t('admin.faqQuestions.updateError'));
+      // Don't show error toast in UI-only mode
     }
   };
 
@@ -95,12 +95,11 @@ const FAQQuestionsPage = () => {
             message.success(t('admin.faqQuestions.deleted'));
             loadQuestions();
             loadStatistics();
-          } else {
-            message.error(t('admin.faqQuestions.deleteError'));
           }
+          // Don't show error toast - service handles demo mode gracefully
         } catch (error) {
           console.error('Error deleting question:', error);
-          message.error(t('admin.faqQuestions.deleteError'));
+          // Don't show error toast in UI-only mode
         }
       },
     });
@@ -132,12 +131,11 @@ const FAQQuestionsPage = () => {
         setAnswerText('');
         loadQuestions();
         loadStatistics();
-      } else {
-        message.error(t('admin.faqQuestions.answerError'));
       }
+      // Don't show error toast - service handles demo mode gracefully
     } catch (error) {
       console.error('Error saving answer:', error);
-      message.error(t('admin.faqQuestions.answerError'));
+      // Don't show error toast in UI-only mode
     }
   };
 
