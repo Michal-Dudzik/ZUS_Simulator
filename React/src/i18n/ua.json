@@ -234,6 +234,8 @@
         "retirementAgePlaceholder": "Пенсійний вік",
         "retirementAgeRequired": "Будь ласка, вкажіть пенсійний вік",
         "retirementAgeUnit": "років",
+        "considerSickLeave": "Врахувати лікарняні",
+        "considerSickLeaveInfo": "(Середньо 10 днів на рік)",
         "calculateButton": "Розрахувати пенсію"
       },
       "results": {
@@ -266,7 +268,12 @@
         "qualifiesForMinimum": "Має право на мінімальну пенсію",
         "qualifiesYes": "✅ Так ({{amount}} PLN)",
         "qualifiesNo": "❌ Ні (потрібно {{years}}+ років)",
-        "originalCalculatedPension": "Первинно розрахована пенсія"
+        "originalCalculatedPension": "Первинно розрахована пенсія",
+        "exportPdf": "Експорт в PDF",
+        "editData": "Редагувати дані",
+        "continueToDetailed": "Продовжити",
+        "detailedSimulationPrompt": "Бажаєте детальнішої симуляції?",
+        "detailedSimulationDescription": "Продовжте з детальною формою, щоб отримати точніші результати."
       }
     },
     "detailed": {
@@ -304,6 +311,10 @@
         "initialCapitalPlaceholder": "Введіть початковий капітал",
         "zusSubaccount": "Капітал на підрахунку ZUS",
         "zusSubaccountPlaceholder": "Введіть капітал на підрахунку",
+        "considerSickLeave": "Врахувати лікарняні",
+        "sickLeaveDays": "Дні лікарняного (Щорічно)",
+        "sickLeaveDaysPlaceholder": "Введіть середню кількість днів лікарняного на рік",
+        "useAverage": "Використати середнє (10 днів)",
         "runAnalysisButton": "Запустити детальний аналіз"
       },
       "results": {

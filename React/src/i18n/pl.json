@@ -234,6 +234,8 @@
         "retirementAgePlaceholder": "Wiek emerytalny",
         "retirementAgeRequired": "Proszę podać wiek emerytalny",
         "retirementAgeUnit": "lat",
+        "considerSickLeave": "Uwzględnij zwolnienia lekarskie",
+        "considerSickLeaveInfo": "(Średnio 10 dni rocznie)",
         "calculateButton": "Oblicz emeryturę"
       },
       "results": {
@@ -266,7 +268,12 @@
         "qualifiesForMinimum": "Kwalifikuje się do minimalnej emerytury",
         "qualifiesYes": "✅ Tak ({{amount}} PLN)",
         "qualifiesNo": "❌ Nie (potrzeba {{years}}+ lat)",
-        "originalCalculatedPension": "Pierwotnie wyliczona emerytura"
+        "originalCalculatedPension": "Pierwotnie wyliczona emerytura",
+        "exportPdf": "Eksportuj do PDF",
+        "editData": "Edytuj dane",
+        "continueToDetailed": "Kontynuuj",
+        "detailedSimulationPrompt": "Chcesz dokładniejszej symulacji?",
+        "detailedSimulationDescription": "Kontynuuj z formularzem szczegółowym, aby uzyskać bardziej precyzyjne wyniki."
       }
     },
     "detailed": {
@@ -300,10 +307,14 @@
         "yearly": "Rocznie",
         "annualValorization": "Waloryzacja roczna (%)",
         "annualValorizationPlaceholder": "Wprowadź procent waloryzacji",
-        "initialCapital": "Kapitał początkowy (Opcjonalnie)",
+        "initialCapital": "Kapitał początkowy",
         "initialCapitalPlaceholder": "Wprowadź kapitał początkowy",
         "zusSubaccount": "Kapitał w subkoncie ZUS",
         "zusSubaccountPlaceholder": "Wprowadź kapitał w subkoncie",
+        "considerSickLeave": "Uwzględnij zwolnienia lekarskie",
+        "sickLeaveDays": "Dni zwolnienia lekarskiego (Rocznie)",
+        "sickLeaveDaysPlaceholder": "Wprowadź średnią liczbę dni zwolnienia rocznie",
+        "useAverage": "Użyj średniej (10 dni)",
         "runAnalysisButton": "Uruchom szczegółową analizę"
       },
       "results": {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Input, Form, Select, Row, Col, DatePicker } from 'antd';
+import { Button, Input, Form, Select, Row, Col, DatePicker, Checkbox } from 'antd';
 import { CalculatorOutlined } from '@ant-design/icons';
 import { useLanguage } from '../../../i18n/useLanguage';
 
@@ -87,8 +87,8 @@ const QuickForm = ({ form, onCalculate, loading, updateRetirementAge }) => {
                 placeholder={t('simulator.quick.form.workStartDatePlaceholder')}
                 size="large"
                 style={{ width: '100%' }}
-                picker="month"
-                format="MM/YYYY"
+                picker="year"
+                format="YYYY"
               />
             </Form.Item>
           </Col>
@@ -106,6 +106,23 @@ const QuickForm = ({ form, onCalculate, loading, updateRetirementAge }) => {
                 min="50"
                 max="80"
               />
+            </Form.Item>
+          </Col>
+        </Row>
+        
+        <Row gutter={[16, 16]}>
+          <Col xs={24}>
+            <Form.Item 
+              name="considerSickLeave"
+              valuePropName="checked"
+              initialValue={false}
+            >
+              <Checkbox>
+                {t('simulator.quick.form.considerSickLeave')} {' '}
+                <span style={{ color: '#888', fontSize: '0.9em' }}>
+                  {t('simulator.quick.form.considerSickLeaveInfo')}
+                </span>
+              </Checkbox>
             </Form.Item>
           </Col>
         </Row>

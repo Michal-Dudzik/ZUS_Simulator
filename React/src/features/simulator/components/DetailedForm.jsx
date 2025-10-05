@@ -1,10 +1,11 @@
-import React from 'react';
-import { Button, Input, Form, Select, Row, Col, Divider, DatePicker } from 'antd';
+import React, { useState } from 'react';
+import { Button, Input, Form, Select, Row, Col, Divider, DatePicker, Checkbox } from 'antd';
 import { BarChartOutlined, EditOutlined } from '@ant-design/icons';
 import { useLanguage } from '../../../i18n/useLanguage';
 
 const DetailedForm = ({ form, onCalculate, onBack, loading, updateRetirementAge }) => {
   const { t } = useLanguage();
+  const [considerSickLeave, setConsiderSickLeave] = useState(false);
 
   return (
     <>
@@ -92,8 +93,8 @@ const DetailedForm = ({ form, onCalculate, onBack, loading, updateRetirementAge 
                 placeholder={t('simulator.quick.form.workStartDatePlaceholder')}
                 size="large"
                 style={{ width: '100%' }}
-                picker="month"
-                format="MM/YYYY"
+                picker="year"
+                format="YYYY"
               />
             </Form.Item>
           </Col>
@@ -200,6 +201,43 @@ const DetailedForm = ({ form, onCalculate, onBack, loading, updateRetirementAge 
               />
             </Form.Item>
           </Col>
+        </Row>
+        
+        <Row gutter={[16, 16]}>
+          <Col xs={24} sm={12}>
+            <Form.Item 
+              name="considerSickLeave"
+              valuePropName="checked"
+              initialValue={false}
+            >
+              <Checkbox onChange={(e) => {
+                setConsiderSickLeave(e.target.checked);
+                if (!e.target.checked) {
+                  form.setFieldsValue({ sickLeaveDays: undefined });
+                }
+              }}>
+                {t('simulator.detailed.form.considerSickLeave')}
+              </Checkbox>
+            </Form.Item>
+          </Col>
+          {considerSickLeave && (
+            <Col xs={24} sm={12}>
+              <Form.Item 
+                label={t('simulator.detailed.form.sickLeaveDays')}
+                name="sickLeaveDays"
+              >
+                <Input 
+                  placeholder={t('simulator.detailed.form.sickLeaveDaysPlaceholder')}
+                  suffix={<span style={{ fontSize: '0.85em', color: '#888' }}>{t('simulator.detailed.form.useAverage')}</span>}
+                  size="large"
+                  type="number"
+                  min="0"
+                  max="365"
+                  defaultValue={10}
+                />
+              </Form.Item>
+            </Col>
+          )}
         </Row>
         
         <div className="form-actions">
