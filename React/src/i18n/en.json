@@ -239,6 +239,8 @@
         "retirementAgePlaceholder": "Retirement age",
         "retirementAgeRequired": "Please enter retirement age",
         "retirementAgeUnit": "years",
+        "considerSickLeave": "Consider sick leave",
+        "considerSickLeaveInfo": "(Average 10 days per year)",
         "calculateButton": "Calculate Pension"
       },
       "results": {
@@ -271,7 +273,12 @@
         "qualifiesForMinimum": "Qualifies for minimum pension",
         "qualifiesYes": "✅ Yes ({{amount}} PLN)",
         "qualifiesNo": "❌ No (need {{years}}+ years)",
-        "originalCalculatedPension": "Originally calculated pension"
+        "originalCalculatedPension": "Originally calculated pension",
+        "exportPdf": "Export to PDF",
+        "editData": "Edit Data",
+        "continueToDetailed": "Continue",
+        "detailedSimulationPrompt": "Want a more detailed simulation?",
+        "detailedSimulationDescription": "Continue with the detailed form to get more precise results."
       }
     },
     "detailed": {
@@ -309,6 +316,10 @@
         "initialCapitalPlaceholder": "Enter initial capital",
         "zusSubaccount": "Capital in ZUS Subaccount",
         "zusSubaccountPlaceholder": "Enter subaccount capital",
+        "considerSickLeave": "Consider sick leave",
+        "sickLeaveDays": "Sick Leave Days (Yearly)",
+        "sickLeaveDaysPlaceholder": "Enter average sick days per year",
+        "useAverage": "Use average (10 days)",
         "runAnalysisButton": "Run Detailed Analysis"
       },
       "results": {

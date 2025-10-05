@@ -1,17 +1,41 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Button, Divider, Alert } from 'antd';
-import { EditOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import { EditOutlined, ArrowRightOutlined, FilePdfOutlined } from '@ant-design/icons';
+import { useReactToPrint } from 'react-to-print';
 import { pensionData } from '../data/pensionData';
 import { useLanguage } from '../../../i18n/useLanguage';
 import PensionVisualization from '../../pensionVisualization/components/PensionVisualization';
+import './PrintStyles.css';
 
 const QuickResults = ({ results, onEdit, onContinueToDetailed, resultsRef }) => {
   const { t } = useLanguage();
+  const printRef = useRef(null);
+
+  const handlePrint = useReactToPrint({
+    contentRef: printRef,
+    documentTitle: `Symulacja-Emerytalna-${new Date().toLocaleDateString('pl-PL')}`,
+    pageStyle: `
+      @page {
+        size: A4;
+        margin: 15mm;
+      }
+    `,
+  });
 
   if (!results) return null;
 
   return (
     <div ref={resultsRef}>
+      <div ref={printRef}>
+        {/* Print header - only visible when printing */}
+        <div className="print-header">
+          <h1>Raport Symulacji Emerytalnej</h1>
+          <p className="print-date">Wygenerowano: {new Date().toLocaleDateString('pl-PL', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+          })}</p>
+        </div>
       <div className="results-preview">
         <Divider orientation="left">{t('simulator.quick.results.title')}</Divider>
         
@@ -98,20 +122,28 @@ const QuickResults = ({ results, onEdit, onContinueToDetailed, resultsRef }) => 
             onClick={onEdit}
             style={{ marginRight: '1rem' }}
           >
-            Edytuj dane
+            {t('simulator.quick.results.editData')}
+          </Button>
+          <Button 
+            type="primary"
+            size="large"
+            icon={<FilePdfOutlined />}
+            onClick={handlePrint}
+          >
+            {t('simulator.quick.results.exportPdf')}
           </Button>
         </div>
 
         {/* Continue to Detailed Simulation */}
         <Alert
-          message="Chcesz dokładniejszej symulacji?"
-          description="Kontynuuj z formularzem szczegółowym, aby uzyskać bardziej precyzyjne wyniki."
+          message={t('simulator.quick.results.detailedSimulationPrompt')}
+          description={t('simulator.quick.results.detailedSimulationDescription')}
           type="info"
           showIcon
           style={{ 
             marginTop: '2rem',
-            backgroundColor: '#e6f7ff',
-            border: '1px solidrgb(145, 255, 158)'
+            backgroundColor: '#ffffff',
+            border: '1px solid rgb(145, 255, 158)'
           }}
           action={
             <Button 
@@ -120,7 +152,7 @@ const QuickResults = ({ results, onEdit, onContinueToDetailed, resultsRef }) => 
               icon={<ArrowRightOutlined />}
               onClick={onContinueToDetailed}
             >
-              Kontynuuj
+              {t('simulator.quick.results.continueToDetailed')}
             </Button>
           }
         />
@@ -129,6 +161,7 @@ const QuickResults = ({ results, onEdit, onContinueToDetailed, resultsRef }) => 
       {/* Enhanced Pension Visualization */}
       <Divider />
       <PensionVisualization results={results} />
+      </div> {/* End of printRef */}
     </div>
   );
 };

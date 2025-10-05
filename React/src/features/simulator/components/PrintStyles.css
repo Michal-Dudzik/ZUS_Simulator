@@ -1,0 +1,300 @@
+/* Print-specific styles for PDF export */
+@media print {
+  /* General page setup */
+  @page {
+    size: A4;
+    margin: 15mm;
+  }
+
+  /* Hide elements that shouldn't be printed */
+  .form-actions,
+  .ant-divider,
+  button,
+  .chart-options,
+  .chart-header .ant-segmented,
+  .scenario-controls-card,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Show only essential elements */
+  body {
+    background: white !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Results section */
+  .results-preview {
+    background: white !important;
+    border: 1px solid #e0e0e0 !important;
+    page-break-after: avoid;
+    margin-bottom: 20px;
+  }
+
+  /* Employment info card */
+  .employment-info-card {
+    background: white !important;
+    border: 2px solid #00993F !important;
+    page-break-inside: avoid;
+    margin: 10px 0 15px 0;
+  }
+
+  /* Main result card - preserve colors for better readability */
+  .main-result-card {
+    background: linear-gradient(135deg, #00993F 0%, #00b363 100%) !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    page-break-inside: avoid;
+    margin: 15px 0 20px 0;
+  }
+
+  .main-result-card::before {
+    display: none;
+  }
+
+  .main-result-amount,
+  .main-result-details h3,
+  .main-result-description {
+    color: white !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .minimum-pension-notice {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  }
+
+  .minimum-pension-notice strong,
+  .minimum-info {
+    color: white !important;
+  }
+
+  /* Results grid */
+  .results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    page-break-inside: avoid;
+    margin-bottom: 20px;
+  }
+
+  .result-item {
+    background: white !important;
+    border: 1px solid #e0e0e0 !important;
+    page-break-inside: avoid;
+  }
+
+  .result-value {
+    color: #00993F !important;
+  }
+
+  /* Visualization section */
+  .pension-visualization-enhanced {
+    page-break-before: always;
+  }
+
+  .visualization-header {
+    page-break-after: avoid;
+    margin-bottom: 15px;
+  }
+
+  .visualization-header h2 {
+    font-size: 1.5rem;
+    color: #000;
+  }
+
+  .visualization-header .subtitle {
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  /* Metrics cards */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    page-break-inside: avoid;
+    margin-bottom: 20px;
+  }
+
+  .metric-card {
+    background: white !important;
+    border: 1px solid #e0e0e0 !important;
+    page-break-inside: avoid;
+  }
+
+  .metric-value {
+    color: #00993F !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Charts */
+  .chart-container-card {
+    background: white !important;
+    border: 1px solid #e0e0e0 !important;
+    page-break-before: always;
+    margin-bottom: 20px;
+  }
+
+  .chart-wrapper {
+    page-break-inside: avoid;
+  }
+
+  .chart-wrapper h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+
+  .chart-description {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 15px;
+  }
+
+  .chart-canvas {
+    page-break-inside: avoid;
+    max-height: 400px;
+  }
+
+  /* Lifestyle comparison */
+  .lifestyle-comparison-card {
+    page-break-before: always;
+    background: white !important;
+    border: 1px solid #e0e0e0 !important;
+  }
+
+  .lifestyle-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .lifestyle-option {
+    background: white !important;
+    border: 1px solid #e0e0e0 !important;
+    page-break-inside: avoid;
+  }
+
+  .lifestyle-option.affordable {
+    border: 2px solid #52c41a !important;
+  }
+
+  .lifestyle-option.challenging {
+    border: 2px solid #faad14 !important;
+  }
+
+  .lifestyle-option.unrealistic {
+    border: 2px solid #ff4d4f !important;
+  }
+
+  /* Insights section */
+  .insights-section {
+    page-break-before: always;
+    background: white !important;
+    border: 1px solid #e0e0e0 !important;
+  }
+
+  .insight-card {
+    background: white !important;
+    border: 1px solid #e0e0e0 !important;
+    page-break-inside: avoid;
+    margin-bottom: 10px;
+  }
+
+  /* Statistics section */
+  .statistics-section {
+    background: white !important;
+    border: 1px solid #e0e0e0 !important;
+    page-break-inside: avoid;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .stat-item {
+    background: white !important;
+    border: 1px solid #e0e0e0 !important;
+  }
+
+  /* Add header to each page */
+  .print-header {
+    display: block !important;
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #00993F;
+  }
+
+  .print-header h1 {
+    font-size: 1.8rem;
+    color: #00993F;
+    margin: 0 0 5px 0;
+  }
+
+  .print-header .print-date {
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  /* Page breaks */
+  .page-break {
+    page-break-after: always;
+  }
+
+  /* Prevent awkward breaks */
+  h2, h3, h4, h5 {
+    page-break-after: avoid;
+  }
+
+  /* Footer on each page */
+  @page {
+    @bottom-right {
+      content: counter(page) " / " counter(pages);
+    }
+  }
+
+  /* Adjust card styles for print */
+  .ant-card {
+    box-shadow: none !important;
+    border: 1px solid #e0e0e0 !important;
+  }
+
+  .ant-card-head {
+    background: white !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+  }
+
+  .ant-card-body {
+    padding: 15px !important;
+  }
+
+  /* Icons and emojis */
+  .employment-icon,
+  .main-result-icon {
+    filter: grayscale(0) !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Alert components */
+  .ant-alert {
+    display: none !important;
+  }
+}
+
+/* Print header that only shows during print */
+.print-header {
+  display: none;
+}
+
+@media print {
+  .print-header {
+    display: block !important;
+  }
+}
