@@ -25,46 +25,45 @@ export const getZusRates = (employmentType, t) => {
   return rates[employmentType] || rates.employment;
 };
 
+export const calculateYearsOfWork = (values, retirementAge, currentAge) => {
+  if (values.workStartDate) {
+    const startDate = new Date(values.workStartDate);
+    // If birth date is available, use it for precise calculation
+    if (values.birthDate) {
+      const birthDate = new Date(values.birthDate);
+      const workStartAge = startDate.getFullYear() - birthDate.getFullYear() - 
+        (startDate < new Date(startDate.getFullYear(), birthDate.getMonth(), birthDate.getDate()) ? 1 : 0);
+      return retirementAge - workStartAge;
+    } else {
+      // Fallback: estimate work start age from current age and years since workStartDate
+      const yearsSinceStart = new Date().getFullYear() - startDate.getFullYear();
+      const workStartAge = currentAge - yearsSinceStart;
+      return retirementAge - workStartAge;
+    }
+  } else {
+    return retirementAge - currentAge;
+  }
+};
+
 // Function to calculate pension based on provided math
-export const obliczEmeryture = (zarobkiMiesieczne, lataPracy, waloryzacja, trwanieZyciaMies, kapitalPoczatkowy = 0, employmentType = 'employment', t) => {
+export const obliczEmeryture = (
+  zarobkiMiesieczne,
+  lataPracy,
+  waloryzacja,
+  trwanieZyciaMies,
+  kapitalPoczatkowy = 0,
+  employmentType = 'employment',
+  t
+) => {
   const rates = getZusRates(employmentType, t);
   const skladkaRoczna = zarobkiMiesieczne * 12 * rates.totalRate;
 
-  // suma składek z waloryzacją (ciąg geometryczny)
-  const kapital = skladkaRoczna * ((Math.pow(1 + waloryzacja, lataPracy) - 1) / waloryzacja);
-
-  // dodaj kapitał początkowy
-  const suma = kapital + kapitalPoczatkowy;
-
-  // wysokość miesięcznej emerytury brutto
-  return suma / trwanieZyciaMies;
-};
-
-export const calculateYearsOfWork = (values, retirementAge, currentAge) => {
-  let lataPracy = 0;
-  if (values.workStartDate) {
-    const startDate = new Date(values.workStartDate);
-    const currentDate = new Date();
-    
-    // Calculate current work years since start date
-    const currentWorkYears = (currentDate.getFullYear() - startDate.getFullYear()) + (currentDate.getMonth() - startDate.getMonth()) / 12;
-    
-    // Calculate remaining years until retirement
-    const yearsUntilRetirement = retirementAge - currentAge;
-    
-    // Use current work years if the person has already worked more than they should based on age
-    if (currentWorkYears > (currentAge - 18)) {
-      lataPracy = Math.max(currentWorkYears, yearsUntilRetirement);
-    } else {
-      lataPracy = Math.max(yearsUntilRetirement, 0);
-    }
-    
-    // Ensure minimum of 1 year if working
-    if (lataPracy < 1) lataPracy = 1;
-  } else {
-    // If no work start date, calculate based on age to retirement
-    lataPracy = Math.max(retirementAge - currentAge, 0);
-    if (lataPracy < 1) lataPracy = 1;
+  // Accumulate contributions with annual valorization
+  let sumaKapitalu = kapitalPoczatkowy;
+  for (let i = 0; i < lataPracy; i++) {
+    sumaKapitalu = (sumaKapitalu + skladkaRoczna) * (1 + waloryzacja);
   }
-  return lataPracy;
+
+  // Calculate monthly pension
+  return sumaKapitalu / trwanieZyciaMies;
 };
