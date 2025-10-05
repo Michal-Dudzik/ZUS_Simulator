@@ -5,7 +5,7 @@ import PublicLayout from './common/components/PublicLayout.jsx'
 import RequireAuth from './common/components/RequireAuth.jsx'
 import { getResourceList } from './common/services/api.js'
 import { supabase, isSupabaseConfigured } from './common/services/supabaseClient.js'
-import { ToolOutlined, DashboardOutlined, FormOutlined } from '@ant-design/icons'
+import { ToolOutlined, DashboardOutlined, FormOutlined, EnvironmentOutlined, QuestionCircleOutlined } from '@ant-design/icons'
 
 const HomePage = lazy(() => import('./features/home/HomePage.jsx'))
 const ResetPasswordPage = lazy(() => import('./features/auth/pages/ResetPasswordPage.jsx'))
@@ -13,6 +13,8 @@ const NotFoundPage = lazy(() => import('./features/error/NotFoundPage.jsx'))
 const AdminLayout = lazy(() => import('./features/adminPanel/adminPanel.jsx'))
 const DashboardPage = lazy(() => import('./features/adminPanel/pages/DashboardPage.jsx'))
 const CreateItemPage = lazy(() => import('./features/adminPanel/pages/AddCarPage.jsx'))
+const LocationMetricsPage = lazy(() => import('./features/adminPanel/pages/LocationMetricsPage.jsx'))
+const FAQQuestionsPage = lazy(() => import('./features/adminPanel/pages/FAQQuestionsPage.jsx'))
 
 async function adminLoader() {
   try {
@@ -42,6 +44,20 @@ export const adminRoutes = [
     icon: <DashboardOutlined />,
     showInMenu: true,
     element: <Suspense fallback={<div>Loading...</div>}><DashboardPage /></Suspense>,
+  },
+  {
+    path: '/admin/location-metrics',
+    name: 'admin.menu.locationMetrics',
+    icon: <EnvironmentOutlined />,
+    showInMenu: true,
+    element: <Suspense fallback={<div>Loading...</div>}><LocationMetricsPage /></Suspense>,
+  },
+  {
+    path: '/admin/faq-questions',
+    name: 'admin.menu.faqQuestions',
+    icon: <QuestionCircleOutlined />,
+    showInMenu: true,
+    element: <Suspense fallback={<div>Loading...</div>}><FAQQuestionsPage /></Suspense>,
   },
   {
     path: '/admin/create',

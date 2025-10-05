@@ -3,6 +3,8 @@ import { Button, Card } from 'antd';
 import { PlayCircleOutlined } from '@ant-design/icons';
 import { useTheme } from '../../../common/hooks/useTheme';
 import Simulator from './Simulator.jsx';
+import image1 from '../../../assets/image1.png';
+import image2 from '../../../assets/image2.png';
 import './SimulatorDashboard.css';
 
 const SimulatorWelcome = () => {
@@ -28,20 +30,25 @@ const SimulatorWelcome = () => {
             <div className="simulator-title-section">
               <h2 className="simulator-title">Symulator ZUS</h2>
               <p className="simulator-description">
-                Sprawdź, jaką emeryturę możesz otrzymać w przyszłości
+              Sprawdź jak może wyglądać Twoja przyszłość!
               </p>
+              
+              <div className="simulator-actions">
+                <Button 
+                  type="primary" 
+                  size="large"
+                  icon={<PlayCircleOutlined />}
+                  onClick={handleStartSimulation}
+                  className="simulator-button start-button"
+                >
+                  Rozpocznij symulację
+                </Button>
+              </div>
             </div>
             
-            <div className="simulator-actions">
-              <Button 
-                type="primary" 
-                size="large"
-                icon={<PlayCircleOutlined />}
-                onClick={handleStartSimulation}
-                className="simulator-button start-button"
-              >
-                Rozpocznij symulację
-              </Button>
+            <div className="floating-images-container">
+              <img src={image1} alt="Visualization preview 1" className="floating-image floating-image-1" />
+              <img src={image2} alt="Visualization preview 2" className="floating-image floating-image-2" />
             </div>
           </div>
         )}

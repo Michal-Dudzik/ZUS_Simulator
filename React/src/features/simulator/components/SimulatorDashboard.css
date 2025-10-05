@@ -41,21 +41,26 @@
 .simulator-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  height: 300px;
+  align-items: flex-start;
+  min-height: 400px;
   padding: 0;
   gap: 2rem;
   position: relative;
   z-index: 2;
+  overflow: visible;
 }
 
 .simulator-title-section {
-  flex: 1;
-  padding: 2rem;
+  flex: 0 0 auto;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 450px;
 }
 
 .simulator-title {
-  font-size: 2rem;
+  font-size: 2.25rem;
   font-weight: 700;
   margin: 0 0 1rem 0;
   color: var(--ant-color-primary, #00993F);
@@ -64,17 +69,69 @@
 .simulator-description {
   font-size: 1.1rem;
   line-height: 1.6;
-  margin: 0;
+  margin: 0 0 2rem 0;
   color: var(--ant-color-text, #000000);
-  max-width: 500px;
 }
 
 .simulator-actions {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.75rem;
-  min-width: 220px;
+  width: 100%;
+}
+
+.floating-images-container {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 2rem;
+  min-height: 400px;
+}
+
+.floating-image {
+  position: absolute;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 350px;
+  height: auto;
+  object-fit: contain;
+}
+
+.floating-image:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(0, 153, 63, 0.2);
+}
+
+.floating-image-1 {
+  top: 10%;
+  right: 15%;
+  animation: float 6s ease-in-out infinite;
+  z-index: 2;
+}
+
+.floating-image-2 {
+  bottom: 10%;
+  right: 10%;
+  animation: float 6s ease-in-out infinite 3s;
+  z-index: 1;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-1deg);
+  }
+  75% {
+    transform: translateY(-15px) rotate(0.5deg);
+  }
 }
 
 .simulator-button {
@@ -319,16 +376,14 @@
 @media (max-width: 768px) {
   .simulator-header {
     flex-direction: column;
-    text-align: center;
-    gap: 1.5rem;
+    text-align: left;
+    gap: 1rem;
+    min-height: auto;
   }
 
   .simulator-title-section {
     padding: 1.5rem;
-  }
-
-  .simulator-actions {
-    padding: 1.5rem;
+    max-width: 100%;
   }
 
   .simulator-title {
@@ -337,21 +392,23 @@
 
   .simulator-description {
     font-size: 1rem;
-    max-width: none;
+    margin-bottom: 1.5rem;
   }
 
   .simulator-actions {
     flex-direction: column;
-    min-width: auto;
     width: 100%;
-    justify-content: center;
     gap: 0.5rem;
   }
 
   .simulator-button {
-    flex: 1;
     height: 42px;
     font-size: 0.9rem;
+    width: 100%;
+  }
+
+  .floating-images-container {
+    display: none;
   }
 
   .simulator-expanded-content {

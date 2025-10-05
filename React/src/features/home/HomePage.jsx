@@ -4,8 +4,6 @@ import SimulatorWelcome from '../simulator/components/SimulatorWelcome.jsx';
 import SectionHeader from './components/SectionHeader';
 import CuriositiesCard from '../curiosityCard/components/CuriositiesCard';
 import FAQ from '../faq/components/FAQ';
-import DataTable from '../dataTable/DataTable';
-import { sampleData, columns, handleExportExcel, handlePrint, handleRefresh } from '../dataTable/DataTableExample';
 import NewsSection from '../newsSection/NewsSection';
 import '../../styles/App.css'
 
@@ -22,36 +20,23 @@ const HomePage = () => {
             month: "października",
             year: "2025"
           }}
-          hyperlinkText="Prognoza wpływów i wydatków Funduszu Emerytalnego do 2080 roku"
-          hyperlinkUrl="https://www.zus.pl/documents/10182/167761/Publikacja_Fundusz_Emerytalny_2023-2080.pdf/3c2c41c9-6a50-0574-4634-ee9cfa43f286?t=1674049287158 "
         />
         
-        <SimulatorWelcome />
+        <section id="simulator">
+          <SimulatorWelcome />
+        </section>
         
-        <CuriositiesCard />
+        <section id="curiosities">
+          <CuriositiesCard />
+        </section>
+
+        <section id="news">
+          <NewsSection />
+        </section>
         
-        <FAQ />
-        
-        {/* <DataTable
-          data={sampleData}
-          columns={columns}
-          title="Losowy Przykład"
-          loading={false}
-          pagination={true}
-          pageSize={5}
-          showSizeChanger={true}
-          showQuickJumper={true}
-          showTotal={true}
-          scroll={{ x: 'max-content' }}
-          size="middle"
-          bordered={true}
-          striped={true}
-          onExportExcel={handleExportExcel}
-          onPrint={handlePrint}
-          onRefresh={handleRefresh}
-        /> */}
-        
-        <NewsSection />
+        <section id="faq">
+          <FAQ />
+        </section>
   
       </div>
     </div>

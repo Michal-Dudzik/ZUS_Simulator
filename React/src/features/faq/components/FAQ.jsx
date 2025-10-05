@@ -1,29 +1,38 @@
 import React from 'react';
 import { Card, Collapse, Typography } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 import faqData from '../data/faqData';
+import FAQQuestionForm from './FAQQuestionForm';
 
 const { Title, Text } = Typography;
 
 const FAQ = () => {
+  const { t } = useTranslation();
+  
   return (
-    <Card>
-      <Title level={4} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-        <QuestionCircleOutlined />
-        Najczęściej zadawane pytania
-      </Title>
-      <Text type="secondary">
-        Odpowiedzi na najważniejsze pytania dotyczące systemu emerytalnego i ZUS
-      </Text>
+    <>
+      <Card>
+        <Title level={4} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <QuestionCircleOutlined />
+          {t('faq.title')}
+        </Title>
+        <Text type="secondary">
+          {t('faq.subtitle')}
+        </Text>
+        
+        <Collapse
+          style={{ marginTop: '1rem' }}
+          items={faqData.map((item) => ({
+            key: item.id,
+            label: <Text strong>{item.question}</Text>,
+            children: <Text>{item.answer}</Text>
+          }))}
+        />
+      </Card>
       
-      <Collapse
-        items={faqData.map((item) => ({
-          key: item.id,
-          label: <Text strong>{item.question}</Text>,
-          children: <Text>{item.answer}</Text>
-        }))}
-      />
-    </Card>
+      <FAQQuestionForm />
+    </>
   );
 };
 

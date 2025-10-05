@@ -1,4 +1,4 @@
-import { getZusRates } from '../../simulator/utils/calculationUtils';
+import { getZusRates } from '../../simulator/utils/pensionCalculations';
 import { pensionData } from '../../simulator/data/pensionData';
 
 /**

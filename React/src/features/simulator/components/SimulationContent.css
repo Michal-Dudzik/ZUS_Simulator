@@ -41,6 +41,14 @@
   min-width: 250px;
 }
 
+/* Radio Button Toggle Styles */
+.simulation-form .ant-radio-button-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
 .results-preview {
   background: var(--ant-color-bg-elevated, #f5f6fb);
   border: 1px solid var(--ant-color-border, #d7dbe7);

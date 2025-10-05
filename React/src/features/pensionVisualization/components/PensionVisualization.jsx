@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card } from 'antd';
 import { LineChartOutlined } from '@ant-design/icons';
-import { getZusRates } from '../../simulator/utils/calculationUtils';
+import { getZusRates } from '../../simulator/utils/pensionCalculations';
 import { useLanguage } from '../../../i18n/useLanguage';
 import {
   calculateScenario,

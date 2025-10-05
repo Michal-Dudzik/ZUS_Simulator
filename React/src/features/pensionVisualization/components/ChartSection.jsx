@@ -107,11 +107,11 @@ const ChartSection = ({
               value: 'pension-payout',
               icon: <DollarOutlined />
             },
-            {
-              label: 'Wydatki',
-              value: 'expense-forecast',
-              icon: <ShoppingOutlined />
-            },
+            // {
+            //   label: 'Wydatki',
+            //   value: 'expense-forecast',
+            //   icon: <ShoppingOutlined />
+            // },
             {
               label: 'Porównanie',
               value: 'comparison',

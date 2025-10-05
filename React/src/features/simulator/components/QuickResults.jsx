@@ -115,12 +115,12 @@ const QuickResults = ({ results, onEdit, onContinueToDetailed, resultsRef }) => 
           </div>
         </div>
 
-        <div className="form-actions" style={{ marginTop: '2rem' }}>
+        <div className="form-actions" style={{ marginTop: '2rem', gap: '1rem' }}>
           <Button 
             size="large"
             icon={<EditOutlined />}
             onClick={onEdit}
-            style={{ marginRight: '1rem' }}
+            style={{ flex: 1 }}
           >
             {t('simulator.quick.results.editData')}
           </Button>
@@ -129,6 +129,7 @@ const QuickResults = ({ results, onEdit, onContinueToDetailed, resultsRef }) => 
             size="large"
             icon={<FilePdfOutlined />}
             onClick={handlePrint}
+            style={{ flex: 1 }}
           >
             {t('simulator.quick.results.exportPdf')}
           </Button>
@@ -143,7 +144,8 @@ const QuickResults = ({ results, onEdit, onContinueToDetailed, resultsRef }) => 
           style={{ 
             marginTop: '2rem',
             backgroundColor: '#ffffff',
-            border: '1px solid rgb(145, 255, 158)'
+            border: '1px solid var(--ant-color-primary, #00993F)',
+            alignItems: 'center'
           }}
           action={
             <Button 
@@ -151,6 +153,7 @@ const QuickResults = ({ results, onEdit, onContinueToDetailed, resultsRef }) => 
               size="large"
               icon={<ArrowRightOutlined />}
               onClick={onContinueToDetailed}
+              style={{ alignSelf: 'center' }}
             >
               {t('simulator.quick.results.continueToDetailed')}
             </Button>

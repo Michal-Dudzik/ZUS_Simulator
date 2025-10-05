@@ -1,8 +1,14 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Form } from 'antd';
-import { calculateFinalPension, qualifiesForMinimumPension, pensionData } from '../data/pensionData';
+import { pensionData } from '../data/pensionData';
 import { useLanguage } from '../../../i18n/useLanguage';
-import { getZusRates, obliczEmeryture, calculateYearsOfWork } from '../utils/calculationUtils';
+import { 
+  calculateQuickSimulation, 
+  calculateDetailedSimulation,
+  prepareApiRequestData,
+  calculateCurrentAge
+} from '../utils/pensionCalculations';
+import { trackSimulatorUsage } from '../../../common/services/analyticsService';
 import QuickForm from './QuickForm';
 import QuickResults from './QuickResults';
 import DetailedForm from './DetailedForm';
@@ -38,24 +44,39 @@ const Simulator = () => {
       // Store form data for later use
       setFormData(values);
 
-      const zarobkiMiesieczne = parseFloat(values.monthlyIncome) || 0;
-      const waloryzacja = 0.05; // Default 5% valorization for quick simulation
-      const kapitalPoczatkowy = 0; // No initial capital in quick simulation
+      // Extract basic values - support both new and legacy fields
+      const monthlyIncome = parseFloat(values.monthlyIncome) || 0;
       const employmentType = values.employmentType || 'employment';
       const gender = values.gender || 'male';
-      const currentAge = parseInt(values.currentAge) || 25;
-      const retirementAge = parseInt(values.retirementAge) || (gender === 'male' ? 65 : 60);
+      
+      // Calculate current age from birthDate (new) or use currentAge (legacy)
+      let currentAge;
+      if (values.birthDate) {
+        currentAge = calculateCurrentAge(values.birthDate);
+      } else {
+        currentAge = parseInt(values.currentAge) || 25;
+      }
+      
+      // Get retirement age - support both retirementAge and retirementYear
+      let retirementAge;
+      if (values.retirementAge) {
+        retirementAge = parseInt(values.retirementAge);
+      } else if (values.retirementYear && values.birthDate) {
+        const birthYear = new Date(values.birthDate).getFullYear();
+        retirementAge = parseInt(values.retirementYear) - birthYear;
+      } else {
+        retirementAge = gender === 'male' ? 65 : 60;
+      }
 
-      // Prepare data for API request - mapping to SimpleFormResultRequest model
-      const apiData = {
-        currentAge: parseInt(currentAge),
-        monthlyIncome: parseFloat(zarobkiMiesieczne),
-        employmentType: employmentType || null,
-        gender: gender || null,
-        workStartDate: values.workStartDate ? new Date(values.workStartDate).toISOString() : null,
-        initialCapital: 0,
-        retirementAge: parseInt(retirementAge)
-      };
+      // Prepare data for API request
+      const apiData = prepareApiRequestData(
+        values,
+        monthlyIncome,
+        employmentType,
+        gender,
+        currentAge,
+        retirementAge
+      );
 
       // Send request to API (background operation)
       try {
@@ -77,54 +98,22 @@ const Simulator = () => {
         console.error('API request failed:', apiError);
       }
 
-      // Calculate years of work
-      const lataPracy = calculateYearsOfWork(values, retirementAge, currentAge);
+      // Perform quick simulation calculation
+      const results = calculateQuickSimulation(values, t);
 
-      // Default life expectancy: 18 years (216 months)
-      const trwanieZyciaMies = 216;
+      setQuickResults(results);
 
-      // Get employment-specific rates
-      const rates = getZusRates(employmentType, t);
-      
-      // Calculate monthly ZUS contributions based on employment type
-      const miesiecznaSkladkaEmployee = zarobkiMiesieczne * rates.employeeRate;
-      const miesiecznaSkladkaTotal = zarobkiMiesieczne * rates.totalRate;
-      const rocznaSkladka = miesiecznaSkladkaTotal * 12;
-      
-      // Calculate pension using employment-specific rates
-      const calculatedEmerytura = obliczEmeryture(zarobkiMiesieczne, lataPracy, waloryzacja, trwanieZyciaMies, kapitalPoczatkowy, employmentType, t);
-      
-      // Apply minimum pension rules
-      const emerytura = calculateFinalPension(calculatedEmerytura, lataPracy, gender);
-
-      // Calculate net income based on employment type and income tax
-      let taxRate = 0.17; // Base income tax rate
-      if (employmentType === 'b2b' || employmentType === 'self-employed') {
-        taxRate = 0.19; // Higher tax rate for self-employed/B2B
-      }
-      const netIncome = zarobkiMiesieczne * (1 - rates.employeeRate - taxRate);
-
-      // Check if qualified for minimum pension
-      const qualifiedForMinimum = qualifiesForMinimumPension(lataPracy, gender);
-      const minimumPensionApplied = qualifiedForMinimum && emerytura > calculatedEmerytura;
-
-      setQuickResults({
+      // Track usage for analytics
+      trackSimulatorUsage({
+        type: 'quick',
+        monthlyIncome: monthlyIncome,
         employmentType: employmentType,
-        employmentDetails: rates,
-        zusContributionsEmployee: miesiecznaSkladkaEmployee,
-        zusContributionsTotal: miesiecznaSkladkaTotal,
-        annualZusContributions: rocznaSkladka,
-        netIncome: netIncome,
-        projectedPension: emerytura,
-        calculatedPension: calculatedEmerytura,
-        yearsOfWork: lataPracy,
-        taxRate: taxRate,
         gender: gender,
         currentAge: currentAge,
         retirementAge: retirementAge,
-        qualifiedForMinimum: qualifiedForMinimum,
-        minimumPensionApplied: minimumPensionApplied,
-        totalCapitalAccumulated: rocznaSkladka * ((Math.pow(1 + waloryzacja, lataPracy) - 1) / waloryzacja) + kapitalPoczatkowy
+        projectedPension: results.projectedPension,
+        yearsOfWork: results.yearsOfWork,
+        postalCode: values.postalCode || null
       });
 
       setStep('quick-results');
@@ -148,15 +137,19 @@ const Simulator = () => {
 
   const handleContinueToDetailed = () => {
     // Pre-fill the detailed form with quick form data
+    const currentYear = new Date().getFullYear();
+    
     form.setFieldsValue({
       ...formData,
       // Add detailed-specific default values
       additionalBenefits: [],
       contributionBase: 'actual',
-      simulationPeriod: 'yearly',
       annualValorization: '5',
+      valorizationSubaccount: '5',
       initialCapital: '0',
-      zusSubaccount: '0'
+      zusSubaccount: '0',
+      capitalAsOfYear: currentYear.toString(),
+      wageGrowthRate: '0'
     });
     setStep('detailed-form');
   };
@@ -169,81 +162,25 @@ const Simulator = () => {
       // Store updated form data
       setFormData(values);
 
-      const zarobkiMiesieczne = parseFloat(values.monthlyIncome) || 0;
-      const waloryzacja = parseFloat(values.annualValorization) / 100 || 0.05;
-      const kapitalPoczatkowy = parseFloat(values.initialCapital) || 0;
-      const employmentType = values.employmentType || 'employment';
-      const gender = values.gender || 'male';
-      const currentAge = parseInt(values.currentAge) || 25;
-      const retirementAge = parseInt(values.retirementAge) || (gender === 'male' ? 65 : 60);
-      const zusSubaccount = parseFloat(values.zusSubaccount) || 0;
+      // Perform detailed simulation calculation
+      const results = calculateDetailedSimulation(values, t);
 
-      // Calculate years of work
-      const lataPracy = calculateYearsOfWork(values, retirementAge, currentAge);
+      setDetailedResults(results);
 
-      // Default life expectancy: 18 years (216 months)
-      const trwanieZyciaMies = 216;
-
-      // Get employment-specific rates
-      const rates = getZusRates(employmentType, t);
-      
-      // Calculate monthly ZUS contributions based on employment type
-      const miesiecznaSkladkaEmployee = zarobkiMiesieczne * rates.employeeRate;
-      const miesiecznaSkladkaTotal = zarobkiMiesieczne * rates.totalRate;
-      const rocznaSkladka = miesiecznaSkladkaTotal * 12;
-      
-      // Calculate pension using employment-specific rates and custom valorization
-      const calculatedEmerytura = obliczEmeryture(zarobkiMiesieczne, lataPracy, waloryzacja, trwanieZyciaMies, kapitalPoczatkowy, employmentType, t);
-      
-      // Apply minimum pension rules
-      const emerytura = calculateFinalPension(calculatedEmerytura, lataPracy, gender);
-
-      // Calculate additional benefits
-      const additionalBenefits = values.additionalBenefits || [];
-      let additionalContributions = 0;
-      if (additionalBenefits.includes('disability')) additionalContributions += zarobkiMiesieczne * 0.015; // 1.5%
-      if (additionalBenefits.includes('sickness')) additionalContributions += zarobkiMiesieczne * 0.0245; // 2.45%
-      if (additionalBenefits.includes('accident')) additionalContributions += zarobkiMiesieczne * 0.0167; // 1.67%
-
-      // Calculate net income based on employment type and income tax
-      let taxRate = 0.17; // Base income tax rate
-      if (employmentType === 'b2b' || employmentType === 'self-employed') {
-        taxRate = 0.19; // Higher tax rate for self-employed/B2B
-      }
-      const netIncome = zarobkiMiesieczne * (1 - rates.employeeRate - taxRate) - additionalContributions;
-
-      // Health insurance contribution (approximate)
-      const healthInsurance = zarobkiMiesieczne * 0.09; // 9%
-
-      // Check if qualified for minimum pension
-      const qualifiedForMinimum = qualifiesForMinimumPension(lataPracy, gender);
-      const minimumPensionApplied = qualifiedForMinimum && emerytura > calculatedEmerytura;
-
-      const totalCapital = rocznaSkladka * ((Math.pow(1 + waloryzacja, lataPracy) - 1) / waloryzacja) + kapitalPoczatkowy + zusSubaccount;
-
-      setDetailedResults({
-        employmentType: employmentType,
-        employmentDetails: rates,
-        zusContributionsEmployee: miesiecznaSkladkaEmployee,
-        zusContributionsTotal: miesiecznaSkladkaTotal,
-        annualZusContributions: rocznaSkladka,
-        netIncome: netIncome,
-        projectedPension: emerytura,
-        calculatedPension: calculatedEmerytura,
-        yearsOfWork: lataPracy,
-        taxRate: taxRate,
-        gender: gender,
-        currentAge: currentAge,
-        retirementAge: retirementAge,
-        qualifiedForMinimum: qualifiedForMinimum,
-        minimumPensionApplied: minimumPensionApplied,
-        totalCapitalAccumulated: totalCapital,
-        additionalBenefits: additionalBenefits,
-        additionalContributions: additionalContributions,
-        healthInsurance: healthInsurance,
-        valorization: waloryzacja,
-        initialCapital: kapitalPoczatkowy,
-        zusSubaccount: zusSubaccount
+      // Track usage for analytics
+      trackSimulatorUsage({
+        type: 'detailed',
+        monthlyIncome: parseFloat(values.monthlyIncome) || 0,
+        employmentType: results.employmentType,
+        gender: results.gender,
+        currentAge: results.currentAge,
+        retirementAge: results.retirementAge,
+        projectedPension: results.projectedPension,
+        yearsOfWork: results.yearsOfWork,
+        valorization: results.valorization,
+        initialCapital: results.initialCapital,
+        additionalBenefits: results.additionalBenefits.join(','),
+        postalCode: values.postalCode || null
       });
 
       setStep('detailed-results');

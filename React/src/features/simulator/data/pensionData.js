@@ -57,22 +57,6 @@ export const getPensionGroup = (amount) => {
   ) || pensionData.pensionGroups[pensionData.pensionGroups.length - 1];
 };
 
-// Helper function to check if user qualifies for minimum pension
-export const qualifiesForMinimumPension = (yearsOfWork, gender) => {
-  const minYearsRequired = gender === 'female' 
-    ? pensionData.minimumWorkingYearsWomen 
-    : pensionData.minimumWorkingYearsMen;
-  
-  return yearsOfWork >= minYearsRequired;
-};
-
-// Helper function to calculate final pension with minimum pension rules applied
-export const calculateFinalPension = (calculatedPension, yearsOfWork, gender) => {
-  const qualified = qualifiesForMinimumPension(yearsOfWork, gender);
-  
-  if (!qualified) {
-    return calculatedPension; // Return calculated amount if not qualified for minimum
-  }
-  
-  return Math.max(calculatedPension, pensionData.minimumPension);
-};
+// NOTE: Calculation functions (qualifiesForMinimumPension, calculateFinalPension)
+// have been moved to /src/features/simulator/utils/pensionCalculations.js
+// Import them from there if needed.

@@ -1,10 +1,12 @@
-import React from 'react';
-import { Button, Input, Form, Select, Row, Col, DatePicker, Checkbox } from 'antd';
+import React, { useState } from 'react';
+import { Button, Input, Form, Select, Row, Col, DatePicker, Checkbox, Radio } from 'antd';
 import { CalculatorOutlined } from '@ant-design/icons';
 import { useLanguage } from '../../../i18n/useLanguage';
+import dayjs from 'dayjs';
 
 const QuickForm = ({ form, onCalculate, loading, updateRetirementAge }) => {
   const { t } = useLanguage();
+  const [retirementInputType, setRetirementInputType] = useState('age'); // 'age' or 'year'
 
   return (
     <>
@@ -12,17 +14,36 @@ const QuickForm = ({ form, onCalculate, loading, updateRetirementAge }) => {
         <Row gutter={[16, 16]}>
           <Col xs={24} sm={12}>
             <Form.Item 
-              label={t('simulator.quick.form.currentAge')}
-              name="currentAge"
-              rules={[{ required: true, message: t('simulator.quick.form.currentAgeRequired') }]}
+              label={t('simulator.quick.form.birthDate')}
+              name="birthDate"
+              rules={[
+                { required: true, message: t('simulator.quick.form.birthDateRequired') },
+                {
+                  validator: (_, value) => {
+                    if (!value) return Promise.resolve();
+                    const birthDate = dayjs(value);
+                    const today = dayjs();
+                    if (birthDate.isAfter(today)) {
+                      return Promise.reject(new Error(t('simulator.quick.form.birthDateFuture')));
+                    }
+                    const age = today.diff(birthDate, 'year');
+                    if (age < 16) {
+                      return Promise.reject(new Error(t('simulator.quick.form.birthDateTooYoung')));
+                    }
+                    if (age > 100) {
+                      return Promise.reject(new Error(t('simulator.quick.form.birthDateTooOld')));
+                    }
+                    return Promise.resolve();
+                  }
+                }
+              ]}
             >
-              <Input 
-                placeholder={t('simulator.quick.form.currentAgePlaceholder')}
-                suffix={t('simulator.quick.form.currentAgeUnit')}
+              <DatePicker 
+                placeholder={t('simulator.quick.form.birthDatePlaceholder')}
                 size="large"
-                type="number"
-                min="18"
-                max="85"
+                style={{ width: '100%' }}
+                format="YYYY-MM-DD"
+                disabledDate={(current) => current && current > dayjs().endOf('day')}
               />
             </Form.Item>
           </Col>
@@ -79,34 +100,152 @@ const QuickForm = ({ form, onCalculate, loading, updateRetirementAge }) => {
         <Row gutter={[16, 16]}>
           <Col xs={24} sm={12}>
             <Form.Item 
-              label={t('simulator.quick.form.workStartDate')}
-              name="workStartDate"
-              rules={[{ required: true, message: t('simulator.quick.form.workStartDateRequired') }]}
+              label={t('simulator.quick.form.workStartYear')}
+              name="workStartYear"
+              rules={[
+                { required: true, message: t('simulator.quick.form.workStartYearRequired') },
+                {
+                  validator: (_, value) => {
+                    if (!value) return Promise.resolve();
+                    const year = parseInt(value);
+                    const currentYear = new Date().getFullYear();
+                    const birthDate = form.getFieldValue('birthDate');
+                    
+                    if (year > currentYear) {
+                      return Promise.reject(new Error(t('simulator.quick.form.workStartYearFuture')));
+                    }
+                    
+                    if (birthDate) {
+                      const birthYear = dayjs(birthDate).year();
+                      if (year < birthYear + 16) {
+                        return Promise.reject(new Error(t('simulator.quick.form.workStartYearTooEarly')));
+                      }
+                    }
+                    
+                    return Promise.resolve();
+                  }
+                }
+              ]}
             >
-              <DatePicker 
-                placeholder={t('simulator.quick.form.workStartDatePlaceholder')}
+              <Input 
+                placeholder={t('simulator.quick.form.workStartYearPlaceholder')}
                 size="large"
-                style={{ width: '100%' }}
-                picker="year"
-                format="YYYY"
+                type="number"
+                min="1950"
+                max={new Date().getFullYear()}
               />
             </Form.Item>
           </Col>
           <Col xs={24} sm={12}>
+            <Form.Item label={t('simulator.quick.form.retirementLabel')}>
+              <Radio.Group 
+                value={retirementInputType} 
+                onChange={(e) => {
+                  setRetirementInputType(e.target.value);
+                  // Clear the other field when switching
+                  if (e.target.value === 'age') {
+                    form.setFieldsValue({ retirementYear: undefined });
+                  } else {
+                    form.setFieldsValue({ retirementAge: undefined });
+                  }
+                }}
+                style={{ marginBottom: 8 }}
+              >
+                <Radio.Button value="age">{t('simulator.quick.form.retirementByAge')}</Radio.Button>
+                <Radio.Button value="year">{t('simulator.quick.form.retirementByYear')}</Radio.Button>
+              </Radio.Group>
+              
+              {retirementInputType === 'age' ? (
+                <Form.Item 
+                  name="retirementAge"
+                  noStyle
+                  rules={[
+                    { required: true, message: t('simulator.quick.form.retirementAgeRequired') },
+                    {
+                      validator: (_, value) => {
+                        if (!value) return Promise.resolve();
+                        const age = parseInt(value);
+                        const birthDate = form.getFieldValue('birthDate');
+                        
+                        if (age < 50 || age > 80) {
+                          return Promise.reject(new Error(t('simulator.quick.form.retirementAgeRange')));
+                        }
+                        
+                        if (birthDate) {
+                          const currentAge = dayjs().diff(dayjs(birthDate), 'year');
+                          if (age <= currentAge) {
+                            return Promise.reject(new Error(t('simulator.quick.form.retirementAgeTooLow')));
+                          }
+                        }
+                        
+                        return Promise.resolve();
+                      }
+                    }
+                  ]}
+                >
+                  <Input 
+                    placeholder={t('simulator.quick.form.retirementAgePlaceholder')}
+                    suffix={t('simulator.quick.form.retirementAgeUnit')}
+                    size="large"
+                    type="number"
+                    min="50"
+                    max="80"
+                  />
+                </Form.Item>
+              ) : (
+                <Form.Item 
+                  name="retirementYear"
+                  noStyle
+                  rules={[
+                    { required: true, message: t('simulator.quick.form.retirementYearRequired') },
+                    {
+                      validator: (_, value) => {
+                        if (!value) return Promise.resolve();
+                        const year = parseInt(value);
+                        const currentYear = new Date().getFullYear();
+                        const workStartYear = form.getFieldValue('workStartYear');
+                        
+                        if (year < currentYear) {
+                          return Promise.reject(new Error(t('simulator.quick.form.retirementYearPast')));
+                        }
+                        
+                        if (workStartYear && year <= parseInt(workStartYear)) {
+                          return Promise.reject(new Error(t('simulator.quick.form.retirementYearBeforeWork')));
+                        }
+                        
+                        return Promise.resolve();
+                      }
+                    }
+                  ]}
+                >
+                  <Input 
+                    placeholder={t('simulator.quick.form.retirementYearPlaceholder')}
+                    size="large"
+                    type="number"
+                    min={new Date().getFullYear()}
+                    max={new Date().getFullYear() + 50}
+                  />
+                </Form.Item>
+              )}
+            </Form.Item>
+          </Col>
+        </Row>
+        
+        <Row gutter={[16, 16]}>
+          <Col xs={24} sm={12}>
             <Form.Item 
-              label={t('simulator.quick.form.retirementAge')}
-              name="retirementAge"
-              rules={[{ required: true, message: t('simulator.quick.form.retirementAgeRequired') }]}
+              label={t('simulator.quick.form.postalCode')}
+              name="postalCode"
             >
               <Input 
-                placeholder={t('simulator.quick.form.retirementAgePlaceholder')}
-                suffix={t('simulator.quick.form.retirementAgeUnit')}
+                placeholder={t('simulator.quick.form.postalCodePlaceholder')}
                 size="large"
-                type="number"
-                min="50"
-                max="80"
+                maxLength={6}
               />
             </Form.Item>
+            <div style={{ marginTop: '-16px', marginBottom: '8px', fontSize: '0.85em', color: '#888' }}>
+              {t('simulator.quick.form.postalCodeInfo')}
+            </div>
           </Col>
         </Row>
         
