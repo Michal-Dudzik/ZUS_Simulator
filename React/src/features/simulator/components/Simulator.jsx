@@ -225,6 +225,7 @@ const Simulator = () => {
       {step === 'quick-results' && (
         <QuickResults
           results={quickResults}
+          formData={formData}
           onEdit={handleEditQuickForm}
           onContinueToDetailed={handleContinueToDetailed}
           resultsRef={resultsRef}
@@ -242,6 +243,7 @@ const Simulator = () => {
       {step === 'detailed-results' && (
         <DetailedResults
           results={detailedResults}
+          formData={formData}
           onEdit={handleEditDetailedForm}
           resultsRef={resultsRef}
         />

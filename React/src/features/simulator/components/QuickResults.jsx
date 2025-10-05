@@ -5,9 +5,10 @@ import { useReactToPrint } from 'react-to-print';
 import { pensionData } from '../data/pensionData';
 import { useLanguage } from '../../../i18n/useLanguage';
 import PensionVisualization from '../../pensionVisualization/components/PensionVisualization';
+import FormDataSummary from './FormDataSummary';
 import './PrintStyles.css';
 
-const QuickResults = ({ results, onEdit, onContinueToDetailed, resultsRef }) => {
+const QuickResults = ({ results, formData, onEdit, onContinueToDetailed, resultsRef }) => {
   const { t } = useLanguage();
   const printRef = useRef(null);
 
@@ -36,6 +37,10 @@ const QuickResults = ({ results, onEdit, onContinueToDetailed, resultsRef }) => 
             day: 'numeric' 
           })}</p>
         </div>
+
+        {/* Form Data Summary */}
+        <FormDataSummary formData={formData} results={results} />
+
       <div className="results-preview">
         <Divider orientation="left">{t('simulator.quick.results.title')}</Divider>
         

@@ -17,6 +17,14 @@
     display: none !important;
   }
 
+  /* Show all charts for print */
+  .all-charts-print-only {
+    position: static !important;
+    visibility: visible !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
   /* Show only essential elements */
   body {
     background: white !important;
@@ -132,11 +140,25 @@
   }
 
   /* Charts */
-  .chart-container-card {
+  /* Hide the interactive chart selector during print, only show print version */
+  .pension-visualization-enhanced > .chart-container-card {
+    display: none !important;
+  }
+
+  /* Show all charts from print version */
+  .all-charts-print-only .chart-container-card {
+    display: block !important;
     background: white !important;
     border: 1px solid #e0e0e0 !important;
-    page-break-before: always;
     margin-bottom: 20px;
+  }
+
+  .all-charts-print-only .chart-container-card:first-child {
+    page-break-before: always;
+  }
+
+  .all-charts-print-only .chart-container-card:not(:first-child) {
+    page-break-before: always;
   }
 
   .chart-wrapper {
@@ -291,6 +313,15 @@
 /* Print header that only shows during print */
 .print-header {
   display: none;
+}
+
+/* Hide all charts for print section on screen - use visibility/position to avoid canvas rendering issues */
+.all-charts-print-only {
+  position: absolute;
+  left: -9999px;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
 }
 
 @media print {

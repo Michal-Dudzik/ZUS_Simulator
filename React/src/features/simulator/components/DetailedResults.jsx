@@ -1,17 +1,46 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Button, Divider } from 'antd';
-import { EditOutlined } from '@ant-design/icons';
+import { EditOutlined, FilePdfOutlined } from '@ant-design/icons';
+import { useReactToPrint } from 'react-to-print';
 import { pensionData } from '../data/pensionData';
 import { useLanguage } from '../../../i18n/useLanguage';
 import PensionVisualization from '../../pensionVisualization/components/PensionVisualization';
+import FormDataSummary from './FormDataSummary';
+import './PrintStyles.css';
 
-const DetailedResults = ({ results, onEdit, resultsRef }) => {
+const DetailedResults = ({ results, formData, onEdit, resultsRef }) => {
   const { t } = useLanguage();
+  const printRef = useRef(null);
+
+  const handlePrint = useReactToPrint({
+    contentRef: printRef,
+    documentTitle: `Symulacja-Emerytalna-Szczegółowa-${new Date().toLocaleDateString('pl-PL')}`,
+    pageStyle: `
+      @page {
+        size: A4;
+        margin: 15mm;
+      }
+    `,
+  });
 
   if (!results) return null;
 
   return (
     <div ref={resultsRef}>
+      <div ref={printRef}>
+        {/* Print header - only visible when printing */}
+        <div className="print-header">
+          <h1>Raport Symulacji Emerytalnej - Szczegółowy</h1>
+          <p className="print-date">Wygenerowano: {new Date().toLocaleDateString('pl-PL', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+          })}</p>
+        </div>
+
+        {/* Form Data Summary */}
+        <FormDataSummary formData={formData} results={results} />
+
       <div className="results-preview">
         <Divider orientation="left">Szczegółowe wyniki symulacji</Divider>
         
@@ -114,13 +143,23 @@ const DetailedResults = ({ results, onEdit, resultsRef }) => {
           )}
         </div>
 
-        <div className="form-actions" style={{ marginTop: '2rem' }}>
+        <div className="form-actions" style={{ marginTop: '2rem', gap: '1rem' }}>
           <Button 
             size="large"
             icon={<EditOutlined />}
             onClick={onEdit}
+            style={{ flex: 1 }}
           >
             Edytuj szczegóły
+          </Button>
+          <Button 
+            type="primary"
+            size="large"
+            icon={<FilePdfOutlined />}
+            onClick={handlePrint}
+            style={{ flex: 1 }}
+          >
+            Eksportuj do PDF
           </Button>
         </div>
       </div>
@@ -128,6 +167,7 @@ const DetailedResults = ({ results, onEdit, resultsRef }) => {
       {/* Enhanced Pension Visualization */}
       <Divider />
       <PensionVisualization results={results} />
+      </div> {/* End of printRef */}
     </div>
   );
 };

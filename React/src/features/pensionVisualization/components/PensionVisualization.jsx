@@ -18,6 +18,7 @@ import ChartSection from './ChartSection';
 import InsightsSection from './InsightsSection';
 import StatisticsSection from './StatisticsSection';
 import LifestyleComparison from './LifestyleComparison';
+import AllChartsForPrint from './AllChartsForPrint';
 import './PensionVisualization.css';
 
 const PensionVisualization = ({ results }) => {
@@ -156,7 +157,7 @@ const PensionVisualization = ({ results }) => {
         capitalIncrease={capitalIncrease}
       />
 
-      {/* Chart Section with Type Selector */}
+      {/* Chart Section with Type Selector - Screen only */}
       <ChartSection
         chartType={chartType}
         onChartTypeChange={setChartType}
@@ -169,6 +170,15 @@ const PensionVisualization = ({ results }) => {
         expenseForecastData={expenseForecastData}
         extraYears={extraYears}
         extraSalary={extraSalary}
+        valorization={valorization}
+      />
+
+      {/* All Charts for Print - Print only */}
+      <AllChartsForPrint
+        accumulationData={accumulationData}
+        payoutData={payoutData}
+        comparisonData={comparisonData}
+        contributionBreakdownData={contributionBreakdownData}
         valorization={valorization}
       />
 
