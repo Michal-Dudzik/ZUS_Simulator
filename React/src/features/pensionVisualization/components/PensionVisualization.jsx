@@ -1,130 +1,196 @@
 import React, { useState } from 'react';
-import { Card, Tooltip } from 'antd';
-import { pensionData, formatCurrency } from '../../simulator/data/pensionData';
+import { Card } from 'antd';
+import { LineChartOutlined } from '@ant-design/icons';
+import { getZusRates } from '../../simulator/utils/calculationUtils';
+import { useLanguage } from '../../../i18n/useLanguage';
+import {
+  calculateScenario,
+  generateAccumulationData,
+  generatePayoutData,
+  generateComparisonData,
+  generateContributionBreakdownData,
+  generateExpenseForecastData,
+  calculateChanges
+} from '../utils/visualizationUtils';
+import MetricsCards from './MetricsCards';
+import ScenarioControls from './ScenarioControls';
+import ChartSection from './ChartSection';
+import InsightsSection from './InsightsSection';
+import StatisticsSection from './StatisticsSection';
+import LifestyleComparison from './LifestyleComparison';
 import './PensionVisualization.css';
 
-const PensionVisualization = () => {
-  const [hoveredGroup, setHoveredGroup] = useState(null);
+const PensionVisualization = ({ results }) => {
+  const { t } = useLanguage();
+  
+  // State for interactive scenarios
+  const [extraYears, setExtraYears] = useState(0);
+  const [extraSalary, setExtraSalary] = useState(0);
+  const [showComparison, setShowComparison] = useState(true);
+  const [chartType, setChartType] = useState('accumulation'); // 'accumulation', 'pension-payout', 'comparison'
 
-  const handleGroupHover = (group) => {
-    setHoveredGroup(group);
-  };
+  if (!results) {
+    return (
+      <div className="pension-visualization">
+        <Card className="info-card">
+          <p>Wykonaj symulację, aby zobaczyć szczegółową wizualizację Twojej przyszłej emerytury.</p>
+        </Card>
+      </div>
+    );
+  }
 
-  const handleGroupLeave = () => {
-    setHoveredGroup(null);
-  };
+  // Extract data from results
+  const {
+    projectedPension,
+    yearsOfWork,
+    currentAge,
+    retirementAge,
+    totalCapitalAccumulated,
+    annualZusContributions,
+    employmentType,
+    valorization = 0.05
+  } = results;
+
+  const monthlyIncome = results.netIncome ? 
+    results.netIncome / (1 - getZusRates(employmentType, t).employeeRate - results.taxRate) : 
+    3000;
+
+  // Calculate scenarios with extra years and salary
+  const scenarioData = calculateScenario(
+    yearsOfWork,
+    monthlyIncome,
+    employmentType,
+    retirementAge,
+    valorization,
+    extraYears,
+    extraSalary,
+    t
+  );
+
+  // Helper function for insights section
+  const calculateScenarioHelper = (additionalYears, salaryIncrease) => 
+    calculateScenario(
+      yearsOfWork,
+      monthlyIncome,
+      employmentType,
+      retirementAge,
+      valorization,
+      additionalYears,
+      salaryIncrease,
+      t
+    );
+
+  // Generate data for charts
+  const accumulationData = generateAccumulationData(
+    yearsOfWork,
+    currentAge,
+    monthlyIncome,
+    employmentType,
+    valorization,
+    extraYears,
+    extraSalary,
+    t
+  );
+
+  const payoutData = generatePayoutData(
+    retirementAge,
+    totalCapitalAccumulated,
+    projectedPension,
+    scenarioData
+  );
+
+  const comparisonData = generateComparisonData(projectedPension, scenarioData);
+
+  const contributionBreakdownData = generateContributionBreakdownData(
+    yearsOfWork,
+    currentAge,
+    monthlyIncome,
+    employmentType,
+    valorization,
+    t
+  );
+
+  const expenseForecastData = generateExpenseForecastData(
+    retirementAge,
+    projectedPension,
+    scenarioData
+  );
+
+  // Calculate percentage changes
+  const { pensionIncrease, capitalIncrease } = calculateChanges(
+    scenarioData,
+    projectedPension,
+    totalCapitalAccumulated
+  );
 
   return (
-    <div className="pension-visualization">
-      <div className="pension-stats">
-        <div className="current-average">
-          <h3>Obecna średnia emerytura w Polsce</h3>
-          <div className="average-amount">
-            {formatCurrency(pensionData.currentAverage)}
-          </div>
-        </div>
+    <div className="pension-visualization-enhanced">
+      <div className="visualization-header">
+        <h2>
+          <LineChartOutlined /> Wizualizacja Twojej Emerytury
+        </h2>
+        <p className="subtitle">
+          Interaktywna analiza kapitału emerytalnego i prognoz na przyszłość
+        </p>
       </div>
 
-      <div className="pension-groups">
-        <h4>Rozkład emerytur według grup</h4>
-        <div className="groups-container">
-          {pensionData.pensionGroups.map((group) => (
-            <Tooltip
-              key={group.id}
-              title={
-                <div className="group-tooltip">
-                  <div className="tooltip-title">
-                    {group.id === 'belowMinimum' && 'Poniżej minimum'}
-                    {group.id === 'aroundAverage' && 'Wokół średniej'}
-                    {group.id === 'aboveAverage' && 'Powyżej średniej'}
-                  </div>
-                  <div className="tooltip-range">
-                    {group.id === 'belowMinimum' && '0 - 1 200 zł'}
-                    {group.id === 'aroundAverage' && '1 200 - 3 000 zł'}
-                    {group.id === 'aboveAverage' && '3 000+ zł'}
-                  </div>
-                  <div className="tooltip-description">
-                    {group.id === 'belowMinimum' && 'Pracowałeś/aś poniżej 25/20 lat, brak prawa do gwarantowanego minimum'}
-                    {group.id === 'aroundAverage' && 'Standardowa emerytura dla większości Polaków'}
-                    {group.id === 'aboveAverage' && 'Wyższa emerytura dzięki dodatkowym składkom i oszczędnościom'}
-                  </div>
-                  <div className="tooltip-percentage">
-                    {group.percentage}% emerytów
-                  </div>
-                </div>
-              }
-              placement="top"
-            >
-              <Card
-                className={`group-card ${hoveredGroup?.id === group.id ? 'hovered' : ''}`}
-                style={{ 
-                  borderColor: group.color,
-                  backgroundColor: hoveredGroup?.id === group.id ? `${group.color}15` : 'transparent'
-                }}
-                onMouseEnter={() => handleGroupHover(group)}
-                onMouseLeave={handleGroupLeave}
-              >
-                <div className="group-header">
-                  <div 
-                    className="group-color-indicator" 
-                    style={{ backgroundColor: group.color }}
-                  />
-                  <h5>
-                    {group.id === 'belowMinimum' && 'Poniżej minimum'}
-                    {group.id === 'aroundAverage' && 'Wokół średniej'}
-                    {group.id === 'aboveAverage' && 'Powyżej średniej'}
-                  </h5>
-                </div>
-                <div className="group-range">
-                  {group.id === 'belowMinimum' && '0 - 1 200 zł'}
-                  {group.id === 'aroundAverage' && '1 200 - 3 000 zł'}
-                  {group.id === 'aboveAverage' && '3 000+ zł'}
-                </div>
-                <div className="group-percentage">
-                  {group.percentage}%
-                </div>
-                <div className="group-bar">
-                  <div 
-                    className="group-bar-fill"
-                    style={{ 
-                      width: `${group.percentage}%`,
-                      backgroundColor: group.color
-                    }}
-                  />
-                </div>
-              </Card>
-            </Tooltip>
-          ))}
-        </div>
-      </div>
+      {/* Key Metrics Cards - 2x2 Grid */}
+      <MetricsCards
+        projectedPension={projectedPension}
+        totalCapitalAccumulated={totalCapitalAccumulated}
+        retirementAge={retirementAge}
+        yearsOfWork={yearsOfWork}
+        monthlyIncome={monthlyIncome}
+      />
 
-      <div className="pension-insights">
-        <div className="insight-card">
-          <h5>Dodatkowe informacje</h5>
-          <div className="insight-stats">
-            <div className="insight-item">
-              <span className="insight-label">Łączna liczba emerytów:</span>
-              <span className="insight-value">
-                {pensionData.statistics.totalPensioners.toLocaleString('pl-PL')}
-              </span>
-            </div>
-            <div className="insight-item">
-              <span className="insight-label">Średni wiek emerytalny:</span>
-              <span className="insight-value">{pensionData.statistics.averageAge} lat</span>
-            </div>
-            <div className="insight-item">
-              <span className="insight-label">Oczekiwana długość życia:</span>
-              <span className="insight-value">{pensionData.statistics.lifeExpectancy} lat</span>
-            </div>
-            <div className="insight-item">
-              <span className="insight-label">Wskaźnik zastąpienia:</span>
-              <span className="insight-value">
-                {(pensionData.statistics.replacementRate * 100).toFixed(0)}%
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Interactive Scenario Controls */}
+      <ScenarioControls
+        extraYears={extraYears}
+        extraSalary={extraSalary}
+        onExtraYearsChange={setExtraYears}
+        onExtraSalaryChange={setExtraSalary}
+        scenarioData={scenarioData}
+        projectedPension={projectedPension}
+        totalCapitalAccumulated={totalCapitalAccumulated}
+        pensionIncrease={pensionIncrease}
+        capitalIncrease={capitalIncrease}
+      />
+
+      {/* Chart Section with Type Selector */}
+      <ChartSection
+        chartType={chartType}
+        onChartTypeChange={setChartType}
+        showComparison={showComparison}
+        onShowComparisonChange={setShowComparison}
+        accumulationData={accumulationData}
+        payoutData={payoutData}
+        comparisonData={comparisonData}
+        contributionBreakdownData={contributionBreakdownData}
+        expenseForecastData={expenseForecastData}
+        extraYears={extraYears}
+        extraSalary={extraSalary}
+        valorization={valorization}
+      />
+
+      {/* Lifestyle Comparison Section */}
+      <LifestyleComparison
+        projectedPension={projectedPension}
+        totalCapitalAccumulated={totalCapitalAccumulated}
+      />
+
+      {/* Insights and Tips */}
+      <InsightsSection
+        projectedPension={projectedPension}
+        calculateScenario={calculateScenarioHelper}
+      />
+
+      {/* Additional Statistics */}
+      <StatisticsSection
+        annualZusContributions={annualZusContributions}
+        yearsOfWork={yearsOfWork}
+        totalCapitalAccumulated={totalCapitalAccumulated}
+        projectedPension={projectedPension}
+      />
     </div>
   );
 };

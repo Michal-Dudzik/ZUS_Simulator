@@ -12,9 +12,9 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.47.10",
     "antd": "^5.27.4",
-    "chart.js": "^4.5.0",
     "i18next": "^25.3.0",
     "react": "^18.3.1",
+    "react-chartjs-2": "^5.3.0",
     "react-dom": "^18.3.1",
     "react-hot-toast": "^2.6.0",
     "react-i18next": "^15.5.3",

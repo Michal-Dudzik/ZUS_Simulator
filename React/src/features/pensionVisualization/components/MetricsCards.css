@@ -1,0 +1,139 @@
+/* Metrics Cards */
+.metrics-row {
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  height: 100%;
+  background: #ffffff !important;
+}
+
+.metric-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.metric-card .ant-card-body {
+  padding: 2rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: transparent !important;
+}
+
+.metric-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.metric-content {
+  flex: 1;
+}
+
+.metric-label {
+  font-size: 0.875rem;
+  color: #666666;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.metric-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #000000;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+}
+
+.metric-subtitle {
+  font-size: 0.75rem;
+  color: #999999;
+}
+
+.pension-card {
+  border-color: var(--ant-color-primary, #11783b);
+}
+
+.pension-card .ant-card-body {
+  background: linear-gradient(135deg, rgba(17, 120, 59, 0.05) 0%, rgba(17, 120, 59, 0.08) 100%);
+}
+
+.capital-card {
+  border-color: #3F84D2;
+}
+
+.capital-card .ant-card-body {
+  background: linear-gradient(135deg, rgba(63, 132, 210, 0.05) 0%, rgba(63, 132, 210, 0.08) 100%);
+}
+
+.years-card {
+  border-color: #FFB34F;
+}
+
+.years-card .ant-card-body {
+  background: linear-gradient(135deg, rgba(255, 179, 79, 0.05) 0%, rgba(255, 179, 79, 0.08) 100%);
+}
+
+.rate-card {
+  border-color: #F05E5E;
+}
+
+.rate-card .ant-card-body {
+  background: linear-gradient(135deg, rgba(240, 94, 94, 0.05) 0%, rgba(240, 94, 94, 0.08) 100%);
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  .metric-card {
+    background: var(--ant-color-bg-elevated, #2d2d2d);
+  }
+
+  .pension-card .ant-card-body {
+    background: linear-gradient(135deg, rgba(0, 153, 63, 0.15) 0%, rgba(0, 153, 63, 0.25) 100%);
+  }
+  
+  .capital-card .ant-card-body {
+    background: linear-gradient(135deg, rgba(63, 132, 210, 0.15) 0%, rgba(63, 132, 210, 0.25) 100%);
+  }
+  
+  .years-card .ant-card-body {
+    background: linear-gradient(135deg, rgba(255, 179, 79, 0.15) 0%, rgba(255, 179, 79, 0.25) 100%);
+  }
+  
+  .rate-card .ant-card-body {
+    background: linear-gradient(135deg, rgba(240, 94, 94, 0.15) 0%, rgba(240, 94, 94, 0.25) 100%);
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .metrics-row > .ant-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .metric-card .ant-card-body {
+    flex-direction: row;
+    text-align: left;
+    padding: 1.5rem;
+  }
+
+  .metric-icon {
+    font-size: 2rem;
+  }
+
+  .metric-value {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .metric-value {
+    font-size: 1.25rem;
+  }
+}

@@ -3,6 +3,7 @@ import { Button, Divider } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
 import { pensionData } from '../data/pensionData';
 import { useLanguage } from '../../../i18n/useLanguage';
+import PensionVisualization from '../../pensionVisualization/components/PensionVisualization';
 
 const DetailedResults = ({ results, onEdit, resultsRef }) => {
   const { t } = useLanguage();
@@ -123,6 +124,10 @@ const DetailedResults = ({ results, onEdit, resultsRef }) => {
           </Button>
         </div>
       </div>
+
+      {/* Enhanced Pension Visualization */}
+      <Divider />
+      <PensionVisualization results={results} />
     </div>
   );
 };

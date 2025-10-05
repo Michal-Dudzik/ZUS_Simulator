@@ -1,0 +1,352 @@
+/* Lifestyle Comparison Styles */
+.lifestyle-comparison-card {
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  background: #ffffff !important;
+  border: 1px solid #e8e8e8 !important;
+}
+
+.lifestyle-comparison-card .ant-card-body {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+.lifestyle-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.lifestyle-header h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #000000 !important;
+}
+
+.lifestyle-subtitle {
+  font-size: 1rem;
+  color: #666666 !important;
+  margin-bottom: 0;
+}
+
+/* Lifestyle Options Grid */
+.lifestyle-options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.lifestyle-option {
+  height: auto;
+  padding: 1.5rem 1rem;
+  border-radius: 8px;
+  border: 2px solid #d9d9d9 !important;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+.lifestyle-option:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  background: #fafafa !important;
+}
+
+.lifestyle-option.selected {
+  border-width: 2px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+.lifestyle-option.not-affordable {
+  opacity: 0.6;
+  background: #f5f5f5 !important;
+}
+
+.lifestyle-option-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lifestyle-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.lifestyle-name {
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  color: #000000 !important;
+}
+
+.lifestyle-cost {
+  font-size: 0.9rem;
+  color: #595959 !important;
+  font-weight: 500;
+}
+
+.affordable-tag {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+}
+
+/* Lifestyle Analysis */
+.lifestyle-analysis {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.selected-lifestyle-card {
+  border-radius: 8px;
+  background: #fafafa !important;
+}
+
+.selected-lifestyle-card .ant-card-body {
+  background: #fafafa !important;
+  color: #000000 !important;
+}
+
+.selected-lifestyle-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.selected-lifestyle-icon {
+  font-size: 2.5rem;
+}
+
+.selected-lifestyle-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000000 !important;
+}
+
+.selected-lifestyle-header p {
+  margin: 0.25rem 0 0 0;
+  color: #595959 !important;
+}
+
+/* Cost Breakdown */
+.cost-breakdown {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #ffffff !important;
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
+}
+
+.cost-breakdown h4 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #000000 !important;
+}
+
+.cost-breakdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cost-breakdown li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  color: #262626 !important;
+  font-size: 0.95rem;
+}
+
+.cost-breakdown li:last-child {
+  border-bottom: none;
+}
+
+.total-cost {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid #e8e8e8;
+  font-size: 1.1rem;
+  text-align: right;
+  color: #000000 !important;
+}
+
+/* Coverage Visualization */
+.coverage-visualization {
+  margin-bottom: 1.5rem;
+}
+
+.coverage-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: #262626 !important;
+}
+
+.coverage-header strong {
+  color: #000000 !important;
+}
+
+.status-alert {
+  margin-top: 1rem;
+}
+
+/* Alternatives Card */
+.alternatives-card {
+  background: #f5f5f5 !important;
+  border-radius: 8px;
+  border: 1px solid #e8e8e8 !important;
+}
+
+.alternatives-card .ant-card-body {
+  background: #f5f5f5 !important;
+  color: #000000 !important;
+}
+
+.alternatives-card h4 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #000000 !important;
+}
+
+.alternatives-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.alternative-option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #ffffff !important;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid #d9d9d9 !important;
+}
+
+.alternative-option:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  transform: translateX(4px);
+  border-color: #40a9ff !important;
+}
+
+.alt-icon {
+  font-size: 1.5rem;
+}
+
+.alt-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.alt-info strong {
+  font-size: 1rem;
+  color: #000000 !important;
+}
+
+.alt-info span {
+  font-size: 0.9rem;
+  color: #595959 !important;
+}
+
+/* Planning Tips */
+.planning-tips {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%) !important;
+  border-radius: 8px;
+  margin-top: 1rem;
+  border: 1px solid #bae7ff !important;
+}
+
+.planning-tips .ant-card-body {
+  background: transparent !important;
+  color: #000000 !important;
+}
+
+.planning-tips h4 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #003a8c !important;
+}
+
+.planning-tips ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.planning-tips li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  color: #262626 !important;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.planning-tips li:last-child {
+  border-bottom: none;
+}
+
+.planning-tips strong {
+  color: #0050b3 !important;
+  font-weight: 600;
+}
+
+/* Ensure all Ant Design buttons in this component have proper styling */
+.lifestyle-comparison-card .ant-btn {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border-color: #d9d9d9 !important;
+}
+
+.lifestyle-comparison-card .ant-btn:hover {
+  background: #fafafa !important;
+  border-color: #40a9ff !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .lifestyle-options-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lifestyle-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .selected-lifestyle-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .coverage-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lifestyle-options-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lifestyle-option {
+    padding: 1rem;
+  }
+
+  .lifestyle-icon {
+    font-size: 1.5rem;
+  }
+}

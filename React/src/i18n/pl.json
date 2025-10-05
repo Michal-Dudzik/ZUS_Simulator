@@ -322,5 +322,109 @@
     "about": "O nas",
     "contact": "Kontakt",
     "admin": "Administrator"
+  },
+  "pensionVisualization": {
+    "chartSection": {
+      "accumulation": "Akumulacja Kapitału",
+      "pensionPayout": "Wypłata Emerytury",
+      "comparison": "Porównanie",
+      "breakdown": "Składki i Zyski",
+      "compareWithAverage": "Porównaj z przeciętnym",
+      "accumulationTitle": "Wzrost Kapitału Emerytalnego w Czasie",
+      "accumulationDescription": "Wykres pokazuje, jak Twój kapitał emerytalny rośnie przez lata pracy dzięki regularnym składkom ZUS i waloryzacji ({valorization}% rocznie).",
+      "payoutTitle": "Wypłata Kapitału Emerytalnego",
+      "payoutDescription": "Wykres pokazuje, jak zgromadzony kapitał będzie wykorzystywany podczas emerytury. Zakładając średnią długość życia na emeryturze: 18 lat.",
+      "comparisonTitle": "Porównanie Emerytur",
+      "comparisonDescription": "Porównanie Twojej przewidywanej emerytury z aktualnymi statystykami krajowymi i scenariuszem alternatywnym.",
+      "breakdownTitle": "Struktura Składek i Wzrostu Kapitału",
+      "breakdownDescription": "Wykres pokazuje jak Twoje roczne składki ZUS oraz zyski z waloryzacji ({valorization}% rocznie) składają się na całkowity kapitał emerytalny."
+    },
+    "lifestyleComparison": {
+      "title": "Wybierz Swój Przyszły Styl Życia",
+      "subtitle": "Sprawdź, czy Twoja przyszła emerytura wystarczy na wymarzony styl życia",
+      "lifestyles": {
+        "minimal": {
+          "name": "Podstawowe potrzeby",
+          "description": "Podstawowe wydatki - mieszkanie, jedzenie, opieka zdrowotna",
+          "items": {
+            "rent": "Czynsz i media",
+            "food": "Jedzenie",
+            "transport": "Transport publiczny",
+            "healthcare": "Opieka zdrowotna",
+            "other": "Pozostałe"
+          }
+        },
+        "comfortable": {
+          "name": "Komfortowy styl życia",
+          "description": "Komfortowe życie z okazjonalnymi przyjemnościami",
+          "items": {
+            "basic": "Podstawowe potrzeby",
+            "entertainment": "Rozrywka i hobby",
+            "travel": "Drobne podróże",
+            "dining": "Restauracje i kultura",
+            "savings": "Oszczędności awaryjne"
+          }
+        },
+        "active": {
+          "name": "Aktywny emeryt",
+          "description": "Aktywność fizyczna, sport, regularne wyjścia",
+          "items": {
+            "comfortable": "Komfortowy styl",
+            "gym": "Siłownia/basen",
+            "activities": "Aktywności fizyczne",
+            "social": "Wyjścia towarzyskie"
+          }
+        },
+        "traveling": {
+          "name": "Podróżnik",
+          "description": "Regularne podróże krajowe i zagraniczne",
+          "items": {
+            "comfortable": "Komfortowy styl",
+            "travel": "Podróże (2-3 razy/rok)",
+            "insurance": "Ubezpieczenia turystyczne",
+            "equipment": "Sprzęt i akcesoria"
+          }
+        },
+        "luxury": {
+          "name": "Luksusowy styl życia",
+          "description": "Premium jakość życia, regularne podróże, rozrywka",
+          "items": {
+            "active": "Aktywny emeryt",
+            "luxuryTravel": "Luksusowe podróże",
+            "premiumEntertainment": "Premium rozrywka",
+            "shopping": "Zakupy i przyjemności"
+          }
+        },
+        "supportive": {
+          "name": "Wspierający rodzinę",
+          "description": "Wsparcie finansowe dla dzieci i wnuków",
+          "items": {
+            "comfortable": "Komfortowy styl",
+            "familySupport": "Wsparcie dla rodziny",
+            "gifts": "Prezenty i okazje"
+          }
+        }
+      },
+      "perMonth": "zł/mies.",
+      "possible": "Możliwe",
+      "monthlyExpenses": "Przewidywane miesięczne wydatki",
+      "total": "Razem",
+      "yourPension": "Twoja emerytura",
+      "coverage": "Pokrycie",
+      "sufficient": "Twoja emerytura pokrywa ten styl życia!",
+      "sufficientDetail": "Pozostaje Ci {amount} zł miesięcznie na dodatkowe wydatki lub oszczędności.",
+      "insufficient": "Twoja emerytura nie pokrywa w pełni tego stylu życia",
+      "insufficientDetail": "Brakuje {amount} zł miesięcznie. Aby osiągnąć ten poziom, rozważ dodatkowe oszczędności emerytalne (np. IKE, IKZE) lub zwiększenie składek ZUS o ok. {monthly} zł miesięcznie.",
+      "youCanConsider": "Możesz również rozważyć",
+      "alternativeOptions": "Alternatywne opcje w Twoim budżecie",
+      "seeMore": "Zobacz",
+      "planningTips": {
+        "title": "Wskazówki planowania emerytury",
+        "additionalSavings": "Dodatkowe oszczędności emerytalne: Rozważ IKE (Indywidualne Konto Emerytalne) lub IKZE (Indywidualne Konto Zabezpieczenia Emerytalnego) z korzyściami podatkowymi.",
+        "property": "Własność nieruchomości: Spłacone mieszkanie znacząco redukuje koszty życia na emeryturze.",
+        "investments": "Inwestycje długoterminowe: Nawet niewielkie, regularne inwestycje przez dziesiątki lat mogą znacząco zwiększyć Twój kapitał emerytalny.",
+        "health": "Zdrowie to oszczędności: Dbanie o zdrowie teraz zmniejsza koszty medyczne w przyszłości."
+      }
+    }
   }
 }
