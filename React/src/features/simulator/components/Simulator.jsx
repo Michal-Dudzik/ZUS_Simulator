@@ -5,7 +5,6 @@ import { useLanguage } from '../../../i18n/useLanguage';
 import { 
   calculateQuickSimulation, 
   calculateDetailedSimulation,
-  prepareApiRequestData,
   calculateCurrentAge
 } from '../utils/pensionCalculations';
 import { trackSimulatorUsage } from '../../../common/services/analyticsService';
@@ -66,36 +65,6 @@ const Simulator = () => {
         retirementAge = parseInt(values.retirementYear) - birthYear;
       } else {
         retirementAge = gender === 'male' ? 65 : 60;
-      }
-
-      // Prepare data for API request
-      const apiData = prepareApiRequestData(
-        values,
-        monthlyIncome,
-        employmentType,
-        gender,
-        currentAge,
-        retirementAge
-      );
-
-      // Send request to API (background operation)
-      try {
-        const response = await fetch('http://localhost:50031/api/Zus/simple-form', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(apiData)
-        });
-
-        if (!response.ok) {
-          throw new Error(`API request failed: ${response.status} ${response.statusText}`);
-        }
-
-        const apiResult = await response.json();
-        console.log('API Response:', apiResult);
-      } catch (apiError) {
-        console.error('API request failed:', apiError);
       }
 
       // Perform quick simulation calculation

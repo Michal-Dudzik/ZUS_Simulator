@@ -822,59 +822,6 @@ export const calculateDetailedSimulation = (formValues, t) => {
 };
 
 // ============================================================================
-// API REQUEST PREPARATION
-// ============================================================================
-
-/**
- * Prepare data for API request (SimpleFormResultRequest model)
- * @param {Object} formValues - Form values
- * @param {number} monthlyIncome - Monthly income
- * @param {string} employmentType - Employment type
- * @param {string} gender - Gender
- * @param {number} currentAge - Current age
- * @param {number} retirementAge - Retirement age
- * @returns {Object} API request data
- */
-export const prepareApiRequestData = (
-  formValues,
-  monthlyIncome,
-  employmentType,
-  gender,
-  currentAge,
-  retirementAge
-) => {
-  // Build workStartDate for API - support both workStartYear and workStartDate
-  let workStartDate = null;
-  if (formValues.workStartYear) {
-    // Convert year to ISO date (January 1st of that year)
-    workStartDate = new Date(parseInt(formValues.workStartYear), 0, 1).toISOString();
-  } else if (formValues.workStartDate) {
-    workStartDate = new Date(formValues.workStartDate).toISOString();
-  }
-  
-  return {
-    currentAge: parseInt(currentAge),
-    birthDate: formValues.birthDate ? new Date(formValues.birthDate).toISOString() : null,
-    monthlyIncome: parseFloat(monthlyIncome),
-    employmentType: employmentType || null,
-    gender: gender || null,
-    workStartDate: workStartDate,
-    workStartYear: formValues.workStartYear ? parseInt(formValues.workStartYear) : null,
-    initialCapital: parseFloat(formValues.initialCapital) || 0,
-    zusSubaccount: parseFloat(formValues.zusSubaccount) || 0,
-    capitalAsOfYear: formValues.capitalAsOfYear ? parseInt(formValues.capitalAsOfYear) : new Date().getFullYear(),
-    retirementAge: parseInt(retirementAge),
-    retirementYear: formValues.retirementYear ? parseInt(formValues.retirementYear) : null,
-    wageGrowthRate: formValues.wageGrowthRate ? parseFloat(formValues.wageGrowthRate) : 0,
-    annualValorization: formValues.annualValorization ? parseFloat(formValues.annualValorization) : 5,
-    valorizationSubaccount: formValues.valorizationSubaccount ? parseFloat(formValues.valorizationSubaccount) : 5,
-    postalCode: formValues.postalCode || null,
-    considerSickLeave: formValues.considerSickLeave || false,
-    sickLeaveDays: formValues.sickLeaveDays ? parseInt(formValues.sickLeaveDays) : null
-  };
-};
-
-// ============================================================================
 // EXPORTS
 // ============================================================================
 
